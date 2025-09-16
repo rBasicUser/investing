@@ -6,6 +6,7 @@
     "section": "",
     "text": "Gráfico Principal de Comparación de Modelos",
     "crumbs": [
+      "Análisis de Acciones",
       "AAPL"
     ]
   },
@@ -16,6 +17,7 @@
     "section": "",
     "text": "Tablas de ResultadosAnálisis por ModeloMétricas de Evaluación\n\n\n\nÚltimos 5 Valores Reales y Predicciones\n\n\n\nÚltimos 5 Valores Reales y Predicciones de Modelos\n\n\nFecha\nTipo\nReal\nMonte Carlo\nARIMA\nRegresión\nSMA\n\n\n\n\n2025-09-08\nReal\n237.88\nNA\nNA\nNA\nNA\n\n\n2025-09-09\nReal\n234.35\nNA\nNA\nNA\nNA\n\n\n2025-09-10\nReal\n226.79\nNA\nNA\nNA\nNA\n\n\n2025-09-11\nReal\n230.03\nNA\nNA\nNA\nNA\n\n\n2025-09-12\nReal\n234.07\nNA\nNA\nNA\nNA\n\n\n2025-09-16\nPredicción\nNA\n234.16\n234.27\n233.92\n234.1\n\n\n\n\n\n\n\nResumen de Predicción para Mañana\n\n\n\nPredicciones para 2025-09-16\n\n\nFecha\nPredicción ($)\nModelo\n\n\n\n\n2025-09-16\n234.27\nARIMA\n\n\n2025-09-16\n234.16\nMonte Carlo\n\n\n2025-09-16\n233.92\nRegresión\n\n\n2025-09-16\n234.10\nSMA\n\n\n\n\n\n\n\nAnálisis de Dispersión\n\n\n\nEstadísticas de las Predicciones para Mañana\n\n\nPredicción Mínima\nPredicción Máxima\nPredicción Media\nDesviación Estándar\nRango\n\n\n\n\n233.92\n234.27\n234.11\n0.15\n0.35\n\n\n\n\n\n\n\n\n\nVisualización de Modelos\n\nARIMA\n\n\n\n\n\n\n\n\n\nDescripción del Modelo ARIMA:\nEl modelo ARIMA (AutoRegressive Integrated Moving Average) es una técnica de series temporales que combina componentes autorregresivos, de diferenciación e integración, y de media móvil. Este modelo es especialmente efectivo para datos que muestran tendencias y patrones estacionales.\n\n\nMonte Carlo\n\n\n\n\n\n\n\n\n\nDescripción del Modelo Monte Carlo:\nLa simulación Monte Carlo utiliza muestreo aleatorio repetido para modelar el comportamiento de sistemas complejos. En el contexto financiero, este método genera múltiples escenarios posibles para predecir los movimientos futuros del precio, proporcionando una estimación probabilística.\n\n\nRegresión\n\n\n\n\n\n\n\n\n\nDescripción del Modelo de Regresión:\nEl modelo de regresión establece una relación matemática entre las variables independientes (como indicadores técnicos, volumen, etc.) y la variable dependiente (precio de la acción). Este enfoque permite identificar patrones lineales o no lineales en los datos históricos.\n\n\nSMA\n\n\n\n\n\n\n\n\n\nDescripción del Modelo SMA:\nLa Media Móvil Simple (SMA) calcula el promedio de los precios durante un período específico. Es uno de los indicadores técnicos más básicos pero efectivos, que ayuda a suavizar las fluctuaciones de precios y identificar tendencias direccionales.\n\n\n\n\n\nComparación de Rendimiento por Modelo\n\n\n\n\n\n\nNota sobre Métricas de Evaluación\n\n\n\nLas métricas de evaluación se cargarán desde:\n\noutput/tables/AAPL/model_MonteCarlo_metrics.csv\noutput/tables/AAPL/model_ARIMA_metrics.csv\noutput/tables/AAPL/model_Regression_metrics.csv\noutput/tables/AAPL/model_SMA_metrics.csv\n\nMétricas a incluir: - MAE: Mean Absolute Error (Error Absoluto Medio) - RMSE: Root Mean Square Error (Raíz del Error Cuadrático Medio) - MAPE: Mean Absolute Percentage Error (Error Absoluto Porcentual Medio) - R²: Coeficiente de Determinación\n\n\n\n\nArchivo no encontrado: output/tables/AAPL/model_MonteCarlo_metrics.csv \nArchivo no encontrado: output/tables/AAPL/model_ARIMA_metrics.csv \nArchivo no encontrado: output/tables/AAPL/model_Regression_metrics.csv \nArchivo no encontrado: output/tables/AAPL/model_SMA_metrics.csv \n\n\nUsando métricas de ejemplo - archivos de métricas no encontrados\n\n\n\nMétricas de Evaluación por Modelo\n\n\nModelo\nMAE\nRMSE\nMAPE\nR2\n\n\n\n\nARIMA\n2.45\n3.21\n1.85\n0.924\n\n\nMonte Carlo\n3.12\n4.05\n2.34\n0.887\n\n\nRegresión\n2.87\n3.78\n2.12\n0.901\n\n\nSMA\n4.23\n5.67\n3.45\n0.823\n\n\n\na Valores menores indican mejor rendimiento para MAE, RMSE y MAPE. Valores mayores indican mejor rendimiento para R².\n\n\n\n\n\n\n\n\n\n\n\n\nInterpretación de Métricas\n\nMAE (Error Absoluto Medio): Mide la diferencia promedio entre valores predichos y reales. Valores menores indican mejor precisión.\nRMSE (Raíz del Error Cuadrático Medio): Penaliza más los errores grandes que el MAE. Útil cuando los errores grandes son especialmente indeseables.\nMAPE (Error Absoluto Porcentual Medio): Expresa el error como porcentaje, facilitando la interpretación independientemente de la escala de los datos.\nR² (Coeficiente de Determinación): Indica qué proporción de la variabilidad de los datos es explicada por el modelo. Valores cercanos a 1 indican mejor ajuste.",
     "crumbs": [
+      "Análisis de Acciones",
       "AAPL"
     ]
   },
@@ -26,6 +28,7 @@
     "section": "Gestión de Riesgos",
     "text": "Gestión de Riesgos\n\nMétricas de Riesgo por Frecuencia\n\n\n\nMétricas de Riesgo por Frecuencia (en porcentajes)\n\n\nMétrica\nDiario\nSemanal\nMensual\nAnual\n\n\n\n\n1\n2.05%\n4.6%\n7.52%\nNA%\n\n\n2\n-3.18%\n-6.24%\n-12.39%\nNA%\n\n\n3\n-4.92%\n-12.53%\n-18.47%\nNA%\n\n\n4\n-4.55%\n-10.76%\n-15.82%\nNaN%\n\n\n5\n33.43%\n80.53%\n99.22%\n-Inf%\n\n\n6\n2.56%\n3.67%\n6.64%\nNaN%\n\n\n\n\n\n\n\nInterpretación de Métricas de Riesgo\n\nVolatilidad: Medida de dispersión de los retornos. Mayor volatilidad indica mayor riesgo.\nVaR (Value at Risk): Pérdida máxima esperada con un nivel de confianza determinado.\nExpected Shortfall: Pérdida promedio esperada en escenarios extremos.\nDrawdown: Caída máxima desde un pico hasta un valle en el período analizado.\n\n\nFecha de generación: 2025-09-15 23:10:41.863538",
     "crumbs": [
+      "Análisis de Acciones",
       "AAPL"
     ]
   },
@@ -158,23 +161,35 @@
   {
     "objectID": "GOOGL.html",
     "href": "GOOGL.html",
-    "title": "",
+    "title": "GOOGL",
     "section": "",
-    "text": "Code"
+    "text": "Gráfico Principal de Comparación de Modelos",
+    "crumbs": [
+      "Análisis de Acciones",
+      "GOOGL"
+    ]
   },
   {
     "objectID": "GOOGL.html#gráfico-principal-de-comparación-de-modelos",
     "href": "GOOGL.html#gráfico-principal-de-comparación-de-modelos",
-    "title": "",
-    "section": "0.1 Gráfico Principal de Comparación de Modelos",
-    "text": "0.1 Gráfico Principal de Comparación de Modelos\n\n\n\n\n\n\n\n\n\n\nTablas de ResultadosAnálisis por ModeloMétricas de Evaluación\n\n\n\n0.1.1 Últimos 5 Valores Reales y Predicciones\n\n\n\nÚltimos 5 Valores Reales y Predicciones de Modelos\n\n\nFecha\nTipo\nReal\nMonte Carlo\nARIMA\nRegresión\nSMA\n\n\n\n\n2025-09-08\nReal\n234.04\nNA\nNA\nNA\nNA\n\n\n2025-09-09\nReal\n239.63\nNA\nNA\nNA\nNA\n\n\n2025-09-10\nReal\n239.17\nNA\nNA\nNA\nNA\n\n\n2025-09-11\nReal\n240.37\nNA\nNA\nNA\nNA\n\n\n2025-09-12\nReal\n240.80\nNA\nNA\nNA\nNA\n\n\n2025-09-16\nPredicción\nNA\n242\n240.77\n243.99\n240.93\n\n\n\n\n\n\n\n0.1.2 Resumen de Predicción para Mañana\n\n\n\nPredicciones para 2025-09-16\n\n\nFecha\nPredicción ($)\nModelo\n\n\n\n\n2025-09-16\n240.77\nARIMA\n\n\n2025-09-16\n242.00\nMonte Carlo\n\n\n2025-09-16\n243.99\nRegresión\n\n\n2025-09-16\n240.93\nSMA\n\n\n\n\n\n\n\n0.1.3 Análisis de Dispersión\n\n\n\nEstadísticas de las Predicciones para Mañana\n\n\nPredicción Mínima\nPredicción Máxima\nPredicción Media\nDesviación Estándar\nRango\n\n\n\n\n240.77\n243.99\n241.92\n1.48\n3.22\n\n\n\n\n\n\n\n\n\n0.1.4 Visualización de Modelos\n\n0.1.4.1 ARIMA\n\n\n\n\n\n\n\n\n\nDescripción del Modelo ARIMA:\nEl modelo ARIMA (AutoRegressive Integrated Moving Average) es una técnica de series temporales que combina componentes autorregresivos, de diferenciación e integración, y de media móvil. Este modelo es especialmente efectivo para datos que muestran tendencias y patrones estacionales.\n\n\n0.1.4.2 Monte Carlo\n\n\n\n\n\n\n\n\n\nDescripción del Modelo Monte Carlo:\nLa simulación Monte Carlo utiliza muestreo aleatorio repetido para modelar el comportamiento de sistemas complejos. En el contexto financiero, este método genera múltiples escenarios posibles para predecir los movimientos futuros del precio, proporcionando una estimación probabilística.\n\n\n0.1.4.3 Regresión\n\n\n\n\n\n\n\n\n\nDescripción del Modelo de Regresión:\nEl modelo de regresión establece una relación matemática entre las variables independientes (como indicadores técnicos, volumen, etc.) y la variable dependiente (precio de la acción). Este enfoque permite identificar patrones lineales o no lineales en los datos históricos.\n\n\n0.1.4.4 SMA\n\n\n\n\n\n\n\n\n\nDescripción del Modelo SMA:\nLa Media Móvil Simple (SMA) calcula el promedio de los precios durante un período específico. Es uno de los indicadores técnicos más básicos pero efectivos, que ayuda a suavizar las fluctuaciones de precios y identificar tendencias direccionales.\n\n\n\n\n\n0.1.5 Comparación de Rendimiento por Modelo\n\n\n\n\n\n\nNota sobre Métricas de Evaluación\n\n\n\nLas métricas de evaluación se cargarán desde:\n\noutput/tables/GOOGL/model_MonteCarlo_metrics.csv\noutput/tables/GOOGL/model_ARIMA_metrics.csv\noutput/tables/GOOGL/model_Regression_metrics.csv\noutput/tables/GOOGL/model_SMA_metrics.csv\n\nMétricas a incluir: - MAE: Mean Absolute Error (Error Absoluto Medio) - RMSE: Root Mean Square Error (Raíz del Error Cuadrático Medio) - MAPE: Mean Absolute Percentage Error (Error Absoluto Porcentual Medio) - R²: Coeficiente de Determinación\n\n\n\n\nArchivo no encontrado: output/tables/GOOGL/model_MonteCarlo_metrics.csv \nArchivo no encontrado: output/tables/GOOGL/model_ARIMA_metrics.csv \nArchivo no encontrado: output/tables/GOOGL/model_Regression_metrics.csv \nArchivo no encontrado: output/tables/GOOGL/model_SMA_metrics.csv \n\n\nUsando métricas de ejemplo - archivos de métricas no encontrados\n\n\n\nMétricas de Evaluación por Modelo\n\n\nModelo\nMAE\nRMSE\nMAPE\nR2\n\n\n\n\nARIMA\n2.45\n3.21\n1.85\n0.924\n\n\nMonte Carlo\n3.12\n4.05\n2.34\n0.887\n\n\nRegresión\n2.87\n3.78\n2.12\n0.901\n\n\nSMA\n4.23\n5.67\n3.45\n0.823\n\n\n\na Valores menores indican mejor rendimiento para MAE, RMSE y MAPE. Valores mayores indican mejor rendimiento para R².\n\n\n\n\n\n\n\n\n\n\n\n\n0.1.6 Interpretación de Métricas\n\nMAE (Error Absoluto Medio): Mide la diferencia promedio entre valores predichos y reales. Valores menores indican mejor precisión.\nRMSE (Raíz del Error Cuadrático Medio): Penaliza más los errores grandes que el MAE. Útil cuando los errores grandes son especialmente indeseables.\nMAPE (Error Absoluto Porcentual Medio): Expresa el error como porcentaje, facilitando la interpretación independientemente de la escala de los datos.\nR² (Coeficiente de Determinación): Indica qué proporción de la variabilidad de los datos es explicada por el modelo. Valores cercanos a 1 indican mejor ajuste."
+    "title": "GOOGL",
+    "section": "",
+    "text": "Tablas de ResultadosAnálisis por ModeloMétricas de Evaluación\n\n\n\nÚltimos 5 Valores Reales y Predicciones\n\n\n\nÚltimos 5 Valores Reales y Predicciones de Modelos\n\n\nFecha\nTipo\nReal\nMonte Carlo\nARIMA\nRegresión\nSMA\n\n\n\n\n2025-09-08\nReal\n234.04\nNA\nNA\nNA\nNA\n\n\n2025-09-09\nReal\n239.63\nNA\nNA\nNA\nNA\n\n\n2025-09-10\nReal\n239.17\nNA\nNA\nNA\nNA\n\n\n2025-09-11\nReal\n240.37\nNA\nNA\nNA\nNA\n\n\n2025-09-12\nReal\n240.80\nNA\nNA\nNA\nNA\n\n\n2025-09-16\nPredicción\nNA\n242\n240.77\n243.99\n240.93\n\n\n\n\n\n\n\nResumen de Predicción para Mañana\n\n\n\nPredicciones para 2025-09-16\n\n\nFecha\nPredicción ($)\nModelo\n\n\n\n\n2025-09-16\n240.77\nARIMA\n\n\n2025-09-16\n242.00\nMonte Carlo\n\n\n2025-09-16\n243.99\nRegresión\n\n\n2025-09-16\n240.93\nSMA\n\n\n\n\n\n\n\nAnálisis de Dispersión\n\n\n\nEstadísticas de las Predicciones para Mañana\n\n\nPredicción Mínima\nPredicción Máxima\nPredicción Media\nDesviación Estándar\nRango\n\n\n\n\n240.77\n243.99\n241.92\n1.48\n3.22\n\n\n\n\n\n\n\n\n\nVisualización de Modelos\n\nARIMA\n\n\n\n\n\n\n\n\n\nDescripción del Modelo ARIMA:\nEl modelo ARIMA (AutoRegressive Integrated Moving Average) es una técnica de series temporales que combina componentes autorregresivos, de diferenciación e integración, y de media móvil. Este modelo es especialmente efectivo para datos que muestran tendencias y patrones estacionales.\n\n\nMonte Carlo\n\n\n\n\n\n\n\n\n\nDescripción del Modelo Monte Carlo:\nLa simulación Monte Carlo utiliza muestreo aleatorio repetido para modelar el comportamiento de sistemas complejos. En el contexto financiero, este método genera múltiples escenarios posibles para predecir los movimientos futuros del precio, proporcionando una estimación probabilística.\n\n\nRegresión\n\n\n\n\n\n\n\n\n\nDescripción del Modelo de Regresión:\nEl modelo de regresión establece una relación matemática entre las variables independientes (como indicadores técnicos, volumen, etc.) y la variable dependiente (precio de la acción). Este enfoque permite identificar patrones lineales o no lineales en los datos históricos.\n\n\nSMA\n\n\n\n\n\n\n\n\n\nDescripción del Modelo SMA:\nLa Media Móvil Simple (SMA) calcula el promedio de los precios durante un período específico. Es uno de los indicadores técnicos más básicos pero efectivos, que ayuda a suavizar las fluctuaciones de precios y identificar tendencias direccionales.\n\n\n\n\n\nComparación de Rendimiento por Modelo\n\n\n\n\n\n\nNota sobre Métricas de Evaluación\n\n\n\nLas métricas de evaluación se cargarán desde:\n\noutput/tables/GOOGL/model_MonteCarlo_metrics.csv\noutput/tables/GOOGL/model_ARIMA_metrics.csv\noutput/tables/GOOGL/model_Regression_metrics.csv\noutput/tables/GOOGL/model_SMA_metrics.csv\n\nMétricas a incluir: - MAE: Mean Absolute Error (Error Absoluto Medio) - RMSE: Root Mean Square Error (Raíz del Error Cuadrático Medio) - MAPE: Mean Absolute Percentage Error (Error Absoluto Porcentual Medio) - R²: Coeficiente de Determinación\n\n\n\n\nArchivo no encontrado: output/tables/GOOGL/model_MonteCarlo_metrics.csv \nArchivo no encontrado: output/tables/GOOGL/model_ARIMA_metrics.csv \nArchivo no encontrado: output/tables/GOOGL/model_Regression_metrics.csv \nArchivo no encontrado: output/tables/GOOGL/model_SMA_metrics.csv \n\n\nUsando métricas de ejemplo - archivos de métricas no encontrados\n\n\n\nMétricas de Evaluación por Modelo\n\n\nModelo\nMAE\nRMSE\nMAPE\nR2\n\n\n\n\nARIMA\n2.45\n3.21\n1.85\n0.924\n\n\nMonte Carlo\n3.12\n4.05\n2.34\n0.887\n\n\nRegresión\n2.87\n3.78\n2.12\n0.901\n\n\nSMA\n4.23\n5.67\n3.45\n0.823\n\n\n\na Valores menores indican mejor rendimiento para MAE, RMSE y MAPE. Valores mayores indican mejor rendimiento para R².\n\n\n\n\n\n\n\n\n\n\n\n\nInterpretación de Métricas\n\nMAE (Error Absoluto Medio): Mide la diferencia promedio entre valores predichos y reales. Valores menores indican mejor precisión.\nRMSE (Raíz del Error Cuadrático Medio): Penaliza más los errores grandes que el MAE. Útil cuando los errores grandes son especialmente indeseables.\nMAPE (Error Absoluto Porcentual Medio): Expresa el error como porcentaje, facilitando la interpretación independientemente de la escala de los datos.\nR² (Coeficiente de Determinación): Indica qué proporción de la variabilidad de los datos es explicada por el modelo. Valores cercanos a 1 indican mejor ajuste.",
+    "crumbs": [
+      "Análisis de Acciones",
+      "GOOGL"
+    ]
   },
   {
     "objectID": "GOOGL.html#gestión-de-riesgos",
     "href": "GOOGL.html#gestión-de-riesgos",
-    "title": "",
-    "section": "0.2 Gestión de Riesgos",
-    "text": "0.2 Gestión de Riesgos\n\n0.2.1 Métricas de Riesgo por Frecuencia\n\n\n\nMétricas de Riesgo por Frecuencia (en porcentajes)\n\n\nMétrica\nDiario\nSemanal\nMensual\nAnual\n\n\n\n\n1\n2.01%\n4.28%\n8.53%\nNA%\n\n\n2\n-3.03%\n-6.45%\n-12.07%\nNA%\n\n\n3\n-4.81%\n-8.36%\n-16.42%\nNA%\n\n\n4\n-4.46%\n-7.71%\n-14.79%\nNaN%\n\n\n5\n29.89%\n77.85%\n99.47%\n-Inf%\n\n\n6\n9.44%\n20.78%\n34.24%\nNaN%\n\n\n\n\n\n\n\n0.2.2 Interpretación de Métricas de Riesgo\n\nVolatilidad: Medida de dispersión de los retornos. Mayor volatilidad indica mayor riesgo.\nVaR (Value at Risk): Pérdida máxima esperada con un nivel de confianza determinado.\nExpected Shortfall: Pérdida promedio esperada en escenarios extremos.\nDrawdown: Caída máxima desde un pico hasta un valle en el período analizado.\n\n\nFecha de generación: 2025-09-15 23:05:39.632044"
+    "title": "GOOGL",
+    "section": "Gestión de Riesgos",
+    "text": "Gestión de Riesgos\n\nMétricas de Riesgo por Frecuencia\n\n\n\nMétricas de Riesgo por Frecuencia (en porcentajes)\n\n\nMétrica\nDiario\nSemanal\nMensual\nAnual\n\n\n\n\n1\n2.01%\n4.28%\n8.53%\nNA%\n\n\n2\n-3.03%\n-6.45%\n-12.07%\nNA%\n\n\n3\n-4.81%\n-8.36%\n-16.42%\nNA%\n\n\n4\n-4.46%\n-7.71%\n-14.79%\nNaN%\n\n\n5\n29.89%\n77.85%\n99.47%\n-Inf%\n\n\n6\n9.44%\n20.78%\n34.24%\nNaN%\n\n\n\n\n\n\n\nInterpretación de Métricas de Riesgo\n\nVolatilidad: Medida de dispersión de los retornos. Mayor volatilidad indica mayor riesgo.\nVaR (Value at Risk): Pérdida máxima esperada con un nivel de confianza determinado.\nExpected Shortfall: Pérdida promedio esperada en escenarios extremos.\nDrawdown: Caída máxima desde un pico hasta un valle en el período analizado.\n\n\nFecha de generación: 2025-09-15 23:05:39.632044",
+    "crumbs": [
+      "Análisis de Acciones",
+      "GOOGL"
+    ]
   },
   {
     "objectID": "K.html",
@@ -217,5 +232,45 @@
     "title": "",
     "section": "0.2 Gestión de Riesgos",
     "text": "0.2 Gestión de Riesgos\n\n0.2.1 Métricas de Riesgo por Frecuencia\n\n\n\nMétricas de Riesgo por Frecuencia (en porcentajes)\n\n\nMétrica\nDiario\nSemanal\nMensual\nAnual\n\n\n\n\n1\n1.38%\n2.82%\n5.41%\nNA%\n\n\n2\n-2.33%\n-4.55%\n-9.57%\nNA%\n\n\n3\n-3.72%\n-5.99%\n-10.69%\nNA%\n\n\n4\n-3.23%\n-5.2%\n-10.44%\nNaN%\n\n\n5\n27.62%\n76.95%\n99.64%\n-Inf%\n\n\n6\n-5.47%\n-12.85%\n-21.26%\nNaN%\n\n\n\n\n\n\n\n0.2.2 Interpretación de Métricas de Riesgo\n\nVolatilidad: Medida de dispersión de los retornos. Mayor volatilidad indica mayor riesgo.\nVaR (Value at Risk): Pérdida máxima esperada con un nivel de confianza determinado.\nExpected Shortfall: Pérdida promedio esperada en escenarios extremos.\nDrawdown: Caída máxima desde un pico hasta un valle en el período analizado.\n\n\nFecha de generación: 2025-09-15 23:06:54.975887"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Visualización de Modelos Predictivos",
+    "section": "",
+    "text": "Prefacio\nBienvenidos al sistema de Visualización de Modelos Predictivos",
+    "crumbs": [
+      "Prefacio"
+    ]
+  },
+  {
+    "objectID": "index.html#descripción-del-proyecto",
+    "href": "index.html#descripción-del-proyecto",
+    "title": "Visualización de Modelos Predictivos",
+    "section": "Descripción del Proyecto",
+    "text": "Descripción del Proyecto\nEste libro presenta un análisis exhaustivo de diferentes modelos predictivos aplicados a una selección de acciones del mercado financiero. Cada capítulo se enfoca en un ticker específico, proporcionando:\n\nModelos Evaluados\n\nARIMA (AutoRegressive Integrated Moving Average): Modelo de series temporales que captura tendencias y patrones estacionales\nMonte Carlo: Simulación estocástica para modelar múltiples escenarios futuros\nRegresión: Análisis de relaciones lineales/no-lineales entre variables\nSMA (Simple Moving Average): Media móvil simple para identificación de tendencias\n\n\n\nMétricas de Evaluación\nPara cada modelo se calculan las siguientes métricas de rendimiento:\n\nMAE (Mean Absolute Error): Error absoluto medio\nRMSE (Root Mean Square Error): Raíz del error cuadrático medio\n\nMAPE (Mean Absolute Percentage Error): Error absoluto porcentual medio\nR² (Coefficient of Determination): Coeficiente de determinación\n\n\n\nAnálisis de Riesgo\nCada capítulo incluye un análisis completo de métricas de riesgo calculadas para diferentes horizontes temporales:\n\nVolatilidad: Medida de dispersión de retornos\nVaR (Value at Risk): Pérdida máxima esperada con nivel de confianza determinado\nExpected Shortfall: Pérdida promedio en escenarios extremos\nDrawdown: Caída máxima desde pico hasta valle",
+    "crumbs": [
+      "Prefacio"
+    ]
+  },
+  {
+    "objectID": "index.html#estructura-del-documento",
+    "href": "index.html#estructura-del-documento",
+    "title": "Visualización de Modelos Predictivos",
+    "section": "Estructura del Documento",
+    "text": "Estructura del Documento\nCada capítulo de acción contiene:\n\nGráfico Principal: Comparación visual de todos los modelos\nTablas de Resultados: Valores históricos vs predicciones\nAnálisis por Modelo: Visualizaciones específicas de cada enfoque\nMétricas de Evaluación: Comparación cuantitativa de rendimiento\nGestión de Riesgos: Análisis de métricas de riesgo por frecuencia",
+    "crumbs": [
+      "Prefacio"
+    ]
+  },
+  {
+    "objectID": "index.html#tecnologías-utilizadas",
+    "href": "index.html#tecnologías-utilizadas",
+    "title": "Visualización de Modelos Predictivos",
+    "section": "Tecnologías Utilizadas",
+    "text": "Tecnologías Utilizadas\n# Principales librerías utilizadas\nlibrary(tidyverse)    # Manipulación de datos\nlibrary(quantmod)     # Datos financieros\nlibrary(forecast)     # Modelos ARIMA\nlibrary(kableExtra)   # Tablas mejoradas\nlibrary(DT)          # Tablas interactivas\n\nPróximos pasos: Selecciona una acción del menú lateral para comenzar el análisis detallado.\n#| echo: false #| warning: false",
+    "crumbs": [
+      "Prefacio"
+    ]
   }
 ]
