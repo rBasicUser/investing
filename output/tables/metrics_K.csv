@@ -1,0 +1,8 @@
+Métrica,Valor
+RMSE,0.2246
+MAE,0.1568
+MAPE (%),0.1942
+R²,0.9594
+R² Ajustado,0.957
+AIC,-5.0588
+BIC,51.1561
