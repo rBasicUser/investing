@@ -1,9 +1,11 @@
 .Rhistory
 .RData
 .Ruserdata
-params.yaml
+*.yaml
 data/
 models/
 sklearn-env/
 output/plots/
 /.quarto/
+*.qmd
+_freeze

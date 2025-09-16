@@ -1,5 +1,0 @@
----
-title: Dashboard de Señales para Gestión de Inversiones
----
-
-Hola. Mi nombre es Alejandro Milián. Soy un profesional apasionado por la ciencia de datos y la innovación. Me gusta identificar patrones. Me destaco por ser autodidacta e innovador. Mi modelo favorito es el de Regresión Logística. Me parece fascinante entender como una variable puede moverte de un lado a otro de la curva. Me gustan los retos profesionales,

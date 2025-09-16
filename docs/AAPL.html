@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>AAPL – Visualización de Modelos Predictivos</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./ABEV.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-762ebc59c025a011b1f8e03231515c0b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AAPL.html">AAPL</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Visualización de Modelos Predictivos</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Dashboard de Señales para Gestión de Inversiones</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AAPL.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">AAPL</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ABEV.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ABEV</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ADSK.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADSK</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GOOGL.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GOOGL</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./JPM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">JPM</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./K.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">K</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./NKE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NKE</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./PEP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PEP</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./WMT.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">WMT</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#gráfico-principal-de-comparación-de-modelos" id="toc-gráfico-principal-de-comparación-de-modelos" class="nav-link active" data-scroll-target="#gráfico-principal-de-comparación-de-modelos">Gráfico Principal de Comparación de Modelos</a></li>
+  <li><a href="#gestión-de-riesgos" id="toc-gestión-de-riesgos" class="nav-link" data-scroll-target="#gestión-de-riesgos">Gestión de Riesgos</a>
+  <ul class="collapse">
+  <li><a href="#métricas-de-riesgo-por-frecuencia" id="toc-métricas-de-riesgo-por-frecuencia" class="nav-link" data-scroll-target="#métricas-de-riesgo-por-frecuencia">Métricas de Riesgo por Frecuencia</a></li>
+  <li><a href="#interpretación-de-métricas-de-riesgo" id="toc-interpretación-de-métricas-de-riesgo" class="nav-link" data-scroll-target="#interpretación-de-métricas-de-riesgo">Interpretación de Métricas de Riesgo</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">AAPL</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Autores:</strong> Maria José Casassola y Alejandro Milián<br>
+<strong>Fecha:</strong> 2025-09-15<br>
+<strong>Ticker:</strong> AAPL<br>
+<strong>Modelos evaluados:</strong> Monte Carlo, ARIMA, Regresión, SMA</p>
+</div>
+</div>
+<div class="cell">
+<style type="text/css">
+/* Tema oscuro compatible */
+h1 {
+  text-align: center;
+  color: #ffffff;
+}
+h2 {
+  color: #ffffff;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 5px;
+}
+
+/* Tablas compatibles con tema oscuro */
+table, th, td {
+  border: 1px solid #495057;
+  border-collapse: collapse;
+  padding: 8px;
+  text-align: center;
+  background-color: #343a40;
+  color: #ffffff;
+}
+th {
+  background-color: #495057 !important;
+  font-weight: bold;
+  color: #ffffff !important;
+}
+tr:nth-child(even) td {
+  background-color: #495057 !important;
+  color: #ffffff !important;
+}
+tr:nth-child(odd) td {
+  background-color: #343a40 !important;
+  color: #ffffff !important;
+}
+.prediction-tomorrow {
+  background-color: #28a745 !important;
+  color: #ffffff !important;
+  font-weight: bold;
+}
+
+/* Forzar colores en tablas kable */
+.table {
+  color: #ffffff !important;
+  background-color: #343a40 !important;
+}
+.table th {
+  background-color: #495057 !important;
+  color: #ffffff !important;
+  border-color: #495057 !important;
+}
+.table td {
+  background-color: #343a40 !important;
+  color: #ffffff !important;
+  border-color: #495057 !important;
+}
+.table-striped tbody tr:nth-of-type(odd) td {
+  background-color: #495057 !important;
+  color: #ffffff !important;
+}
+.table-hover tbody tr:hover td {
+  background-color: #6c757d !important;
+  color: #ffffff !important;
+}
+</style>
+</div>
+<section id="gráfico-principal-de-comparación-de-modelos" class="level2">
+<h2 class="anchored" data-anchor-id="gráfico-principal-de-comparación-de-modelos">Gráfico Principal de Comparación de Modelos</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="AAPL_files/figure-html/grafico-principal-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="3000"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Tablas de Resultados</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Análisis por Modelo</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Métricas de Evaluación</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<section id="últimos-5-valores-reales-y-predicciones" class="level3">
+<h3 class="anchored" data-anchor-id="últimos-5-valores-reales-y-predicciones">Últimos 5 Valores Reales y Predicciones</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Últimos 5 Valores Reales y Predicciones de Modelos</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;" data-quarto-table-cell-role="th">Fecha</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Tipo</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Real</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Monte Carlo</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">ARIMA</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Regresión</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">SMA</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">2025-09-08</td>
+<td style="text-align: center;">Real</td>
+<td style="text-align: center;">237.88</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2025-09-09</td>
+<td style="text-align: center;">Real</td>
+<td style="text-align: center;">234.35</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2025-09-10</td>
+<td style="text-align: center;">Real</td>
+<td style="text-align: center;">226.79</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2025-09-11</td>
+<td style="text-align: center;">Real</td>
+<td style="text-align: center;">230.03</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2025-09-12</td>
+<td style="text-align: center;">Real</td>
+<td style="text-align: center;">234.07</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2025-09-16</td>
+<td style="text-align: center;">Predicción</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">234.16</td>
+<td style="text-align: center;">234.27</td>
+<td style="text-align: center;">233.92</td>
+<td style="text-align: center;">234.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="resumen-de-predicción-para-mañana" class="level3">
+<h3 class="anchored" data-anchor-id="resumen-de-predicción-para-mañana">Resumen de Predicción para Mañana</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Predicciones para 2025-09-16</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;" data-quarto-table-cell-role="th">Fecha</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Predicción ($)</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Modelo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">2025-09-16</td>
+<td style="text-align: center;">234.27</td>
+<td style="text-align: center;">ARIMA</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2025-09-16</td>
+<td style="text-align: center;">234.16</td>
+<td style="text-align: center;">Monte Carlo</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2025-09-16</td>
+<td style="text-align: center;">233.92</td>
+<td style="text-align: center;">Regresión</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2025-09-16</td>
+<td style="text-align: center;">234.10</td>
+<td style="text-align: center;">SMA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="análisis-de-dispersión" class="level3">
+<h3 class="anchored" data-anchor-id="análisis-de-dispersión">Análisis de Dispersión</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Estadísticas de las Predicciones para Mañana</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;" data-quarto-table-cell-role="th">Predicción Mínima</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Predicción Máxima</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Predicción Media</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Desviación Estándar</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Rango</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">233.92</td>
+<td style="text-align: center;">234.27</td>
+<td style="text-align: center;">234.11</td>
+<td style="text-align: center;">0.15</td>
+<td style="text-align: center;">0.35</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<section id="visualización-de-modelos" class="level3 tabset">
+<h3 class="tabset anchored" data-anchor-id="visualización-de-modelos">Visualización de Modelos</h3>
+<section id="arima" class="level4">
+<h4 class="anchored" data-anchor-id="arima">ARIMA</h4>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plots/AAPL/ARIMA_AAPL.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Descripción del Modelo ARIMA:</strong></p>
+<p>El modelo ARIMA (AutoRegressive Integrated Moving Average) es una técnica de series temporales que combina componentes autorregresivos, de diferenciación e integración, y de media móvil. Este modelo es especialmente efectivo para datos que muestran tendencias y patrones estacionales.</p>
+</section>
+<section id="monte-carlo" class="level4">
+<h4 class="anchored" data-anchor-id="monte-carlo">Monte Carlo</h4>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plots/AAPL/MonteCarlo_AAPL.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Descripción del Modelo Monte Carlo:</strong></p>
+<p>La simulación Monte Carlo utiliza muestreo aleatorio repetido para modelar el comportamiento de sistemas complejos. En el contexto financiero, este método genera múltiples escenarios posibles para predecir los movimientos futuros del precio, proporcionando una estimación probabilística.</p>
+</section>
+<section id="regresión" class="level4">
+<h4 class="anchored" data-anchor-id="regresión">Regresión</h4>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plots/AAPL/Regression_AAPL.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Descripción del Modelo de Regresión:</strong></p>
+<p>El modelo de regresión establece una relación matemática entre las variables independientes (como indicadores técnicos, volumen, etc.) y la variable dependiente (precio de la acción). Este enfoque permite identificar patrones lineales o no lineales en los datos históricos.</p>
+</section>
+<section id="sma" class="level4">
+<h4 class="anchored" data-anchor-id="sma">SMA</h4>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plots/AAPL/SMA_AAPL.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Descripción del Modelo SMA:</strong></p>
+<p>La Media Móvil Simple (SMA) calcula el promedio de los precios durante un período específico. Es uno de los indicadores técnicos más básicos pero efectivos, que ayuda a suavizar las fluctuaciones de precios y identificar tendencias direccionales.</p>
+</section>
+</section>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<section id="comparación-de-rendimiento-por-modelo" class="level3">
+<h3 class="anchored" data-anchor-id="comparación-de-rendimiento-por-modelo">Comparación de Rendimiento por Modelo</h3>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota sobre Métricas de Evaluación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Las métricas de evaluación se cargarán desde:</p>
+<ul>
+<li><code>output/tables/AAPL/model_MonteCarlo_metrics.csv</code></li>
+<li><code>output/tables/AAPL/model_ARIMA_metrics.csv</code></li>
+<li><code>output/tables/AAPL/model_Regression_metrics.csv</code></li>
+<li><code>output/tables/AAPL/model_SMA_metrics.csv</code></li>
+</ul>
+<p><strong>Métricas a incluir:</strong> - <strong>MAE:</strong> Mean Absolute Error (Error Absoluto Medio) - <strong>RMSE:</strong> Root Mean Square Error (Raíz del Error Cuadrático Medio) - <strong>MAPE:</strong> Mean Absolute Percentage Error (Error Absoluto Porcentual Medio) - <strong>R²:</strong> Coeficiente de Determinación</p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Archivo no encontrado: output/tables/AAPL/model_MonteCarlo_metrics.csv 
+Archivo no encontrado: output/tables/AAPL/model_ARIMA_metrics.csv 
+Archivo no encontrado: output/tables/AAPL/model_Regression_metrics.csv 
+Archivo no encontrado: output/tables/AAPL/model_SMA_metrics.csv </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Usando métricas de ejemplo - archivos de métricas no encontrados</code></pre>
+</div>
+<div class="cell-output-display">
+<table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Métricas de Evaluación por Modelo</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Modelo</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">MAE</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">RMSE</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">MAPE</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">R2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold;">ARIMA</td>
+<td style="text-align: center;">2.45</td>
+<td style="text-align: center;">3.21</td>
+<td style="text-align: center;">1.85</td>
+<td style="text-align: center;">0.924</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold;">Monte Carlo</td>
+<td style="text-align: center;">3.12</td>
+<td style="text-align: center;">4.05</td>
+<td style="text-align: center;">2.34</td>
+<td style="text-align: center;">0.887</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold;">Regresión</td>
+<td style="text-align: center;">2.87</td>
+<td style="text-align: center;">3.78</td>
+<td style="text-align: center;">2.12</td>
+<td style="text-align: center;">0.901</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold;">SMA</td>
+<td style="text-align: center;">4.23</td>
+<td style="text-align: center;">5.67</td>
+<td style="text-align: center;">3.45</td>
+<td style="text-align: center;">0.823</td>
+</tr>
+</tbody><tfoot>
+<tr class="odd">
+<td style="text-align: left; padding: 0; border: 0;"><sup>a</sup> Valores menores indican mejor rendimiento para MAE, RMSE y MAPE. Valores mayores indican mejor rendimiento para R².</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tfoot>
+
+</table>
+</div>
+</div>
+</section>
+<section id="interpretación-de-métricas" class="level3">
+<h3 class="anchored" data-anchor-id="interpretación-de-métricas">Interpretación de Métricas</h3>
+<ul>
+<li><p><strong>MAE (Error Absoluto Medio):</strong> Mide la diferencia promedio entre valores predichos y reales. Valores menores indican mejor precisión.</p></li>
+<li><p><strong>RMSE (Raíz del Error Cuadrático Medio):</strong> Penaliza más los errores grandes que el MAE. Útil cuando los errores grandes son especialmente indeseables.</p></li>
+<li><p><strong>MAPE (Error Absoluto Porcentual Medio):</strong> Expresa el error como porcentaje, facilitando la interpretación independientemente de la escala de los datos.</p></li>
+<li><p><strong>R² (Coeficiente de Determinación):</strong> Indica qué proporción de la variabilidad de los datos es explicada por el modelo. Valores cercanos a 1 indican mejor ajuste.</p></li>
+</ul>
+</section>
+</div>
+</div>
+</div>
+</section>
+<section id="gestión-de-riesgos" class="level2">
+<h2 class="anchored" data-anchor-id="gestión-de-riesgos">Gestión de Riesgos</h2>
+<section id="métricas-de-riesgo-por-frecuencia" class="level3">
+<h3 class="anchored" data-anchor-id="métricas-de-riesgo-por-frecuencia">Métricas de Riesgo por Frecuencia</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Métricas de Riesgo por Frecuencia (en porcentajes)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Métrica</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Diario</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Semanal</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Mensual</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Anual</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold;">1</td>
+<td style="text-align: center;">2.05%</td>
+<td style="text-align: center;">4.6%</td>
+<td style="text-align: center;">7.52%</td>
+<td style="text-align: center;">NA%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold;">2</td>
+<td style="text-align: center;">-3.18%</td>
+<td style="text-align: center;">-6.24%</td>
+<td style="text-align: center;">-12.39%</td>
+<td style="text-align: center;">NA%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold;">3</td>
+<td style="text-align: center;">-4.92%</td>
+<td style="text-align: center;">-12.53%</td>
+<td style="text-align: center;">-18.47%</td>
+<td style="text-align: center;">NA%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold;">4</td>
+<td style="text-align: center;">-4.55%</td>
+<td style="text-align: center;">-10.76%</td>
+<td style="text-align: center;">-15.82%</td>
+<td style="text-align: center;">NaN%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold;">5</td>
+<td style="text-align: center;">33.43%</td>
+<td style="text-align: center;">80.53%</td>
+<td style="text-align: center;">99.22%</td>
+<td style="text-align: center;">-Inf%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold;">6</td>
+<td style="text-align: center;">2.56%</td>
+<td style="text-align: center;">3.67%</td>
+<td style="text-align: center;">6.64%</td>
+<td style="text-align: center;">NaN%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="interpretación-de-métricas-de-riesgo" class="level3">
+<h3 class="anchored" data-anchor-id="interpretación-de-métricas-de-riesgo">Interpretación de Métricas de Riesgo</h3>
+<ul>
+<li><strong>Volatilidad:</strong> Medida de dispersión de los retornos. Mayor volatilidad indica mayor riesgo.</li>
+<li><strong>VaR (Value at Risk):</strong> Pérdida máxima esperada con un nivel de confianza determinado.</li>
+<li><strong>Expected Shortfall:</strong> Pérdida promedio esperada en escenarios extremos.</li>
+<li><strong>Drawdown:</strong> Caída máxima desde un pico hasta un valle en el período analizado.</li>
+</ul>
+<hr>
+<p><strong>Fecha de generación:</strong> 2025-09-15 23:10:41.863538</p>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Dashboard de Señales para Gestión de Inversiones">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Dashboard de Señales para Gestión de Inversiones</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./ABEV.html" class="pagination-link" aria-label="ABEV">
+        <span class="nav-page-text">ABEV</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># AAPL {.unnumbered}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>**Autores:** Maria José Casassola y Alejandro Milián\</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>**Fecha:** <span class="in">`{r} Sys.Date()`</span>\</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>**Ticker:** AAPL\</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>**Modelos evaluados:** Monte Carlo, ARIMA, Regresión, SMA</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=FALSE}</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quantmod)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">FALSE</span>, <span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup-imagenes</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear directorio local para imágenes si no existe</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"plots/AAPL"</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Lista de imágenes a copiar</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>imagenes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ARIMA_AAPL.png"</span>, <span class="st">"MonteCarlo_AAPL.png"</span>, <span class="st">"Regression_AAPL.png"</span>, <span class="st">"SMA_AAPL.png"</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Copiar imágenes desde output/plots/AAPL/ a plots/AAPL/ (directorio local)</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (img <span class="cf">in</span> imagenes) {</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  origen <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">"output"</span>, <span class="st">"plots"</span>, <span class="st">"AAPL"</span>, img)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  destino <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">"plots"</span>, <span class="st">"AAPL"</span>, img)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">file.exists</span>(origen)) {</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">file.copy</span>(origen, destino, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Advertencia: No se encontró la imagen:"</span>, origen, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="in">```{css}</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="co">/* Tema oscuro compatible */</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>h1 <span class="op">{</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  text<span class="op">-</span>align<span class="op">:</span> center<span class="op">;</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>  color<span class="op">:</span> #ffffff<span class="op">;</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>h2 <span class="op">{</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>  color<span class="op">:</span> #ffffff<span class="op">;</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>  border<span class="op">-</span>bottom<span class="op">:</span> <span class="dv">2</span>px solid #<span class="dv">007</span>bff<span class="op">;</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>  padding<span class="op">-</span>bottom<span class="op">:</span> <span class="dv">5</span>px<span class="op">;</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="co">/* Tablas compatibles con tema oscuro */</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>table<span class="op">,</span> th<span class="op">,</span> td <span class="op">{</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>  border<span class="op">:</span> <span class="dv">1</span>px solid #<span class="dv">495057</span><span class="op">;</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>  border<span class="op">-</span>collapse<span class="op">:</span> collapse<span class="op">;</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>  padding<span class="op">:</span> <span class="dv">8</span>px<span class="op">;</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>  text<span class="op">-</span>align<span class="op">:</span> center<span class="op">;</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>  background<span class="op">-</span>color<span class="op">:</span> #<span class="dv">343</span>a40<span class="op">;</span></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>  color<span class="op">:</span> #ffffff<span class="op">;</span></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>th <span class="op">{</span></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>  background<span class="op">-</span>color<span class="op">:</span> #<span class="dv">495057</span> <span class="op">!</span>important<span class="op">;</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>  font<span class="op">-</span>weight<span class="op">:</span> bold<span class="op">;</span></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>  color<span class="op">:</span> #ffffff <span class="op">!</span>important<span class="op">;</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>tr<span class="op">:</span>nth<span class="op">-</span><span class="fu">child</span><span class="op">(</span>even<span class="op">)</span> td <span class="op">{</span></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>  background<span class="op">-</span>color<span class="op">:</span> #<span class="dv">495057</span> <span class="op">!</span>important<span class="op">;</span></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>  color<span class="op">:</span> #ffffff <span class="op">!</span>important<span class="op">;</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>tr<span class="op">:</span>nth<span class="op">-</span><span class="fu">child</span><span class="op">(</span>odd<span class="op">)</span> td <span class="op">{</span></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>  background<span class="op">-</span>color<span class="op">:</span> #<span class="dv">343</span>a40 <span class="op">!</span>important<span class="op">;</span></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>  color<span class="op">:</span> #ffffff <span class="op">!</span>important<span class="op">;</span></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a><span class="op">.</span><span class="fu">prediction</span><span class="op">-</span>tomorrow <span class="op">{</span></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>  background<span class="op">-</span>color<span class="op">:</span> #<span class="dv">28</span>a745 <span class="op">!</span>important<span class="op">;</span></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>  color<span class="op">:</span> #ffffff <span class="op">!</span>important<span class="op">;</span></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>  font<span class="op">-</span>weight<span class="op">:</span> bold<span class="op">;</span></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a><span class="co">/* Forzar colores en tablas kable */</span></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a><span class="op">.</span><span class="fu">table</span> <span class="op">{</span></span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>  color<span class="op">:</span> #ffffff <span class="op">!</span>important<span class="op">;</span></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>  background<span class="op">-</span>color<span class="op">:</span> #<span class="dv">343</span>a40 <span class="op">!</span>important<span class="op">;</span></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a><span class="op">.</span><span class="fu">table</span> th <span class="op">{</span></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>  background<span class="op">-</span>color<span class="op">:</span> #<span class="dv">495057</span> <span class="op">!</span>important<span class="op">;</span></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>  color<span class="op">:</span> #ffffff <span class="op">!</span>important<span class="op">;</span></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>  border<span class="op">-</span>color<span class="op">:</span> #<span class="dv">495057</span> <span class="op">!</span>important<span class="op">;</span></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="op">.</span><span class="fu">table</span> td <span class="op">{</span></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>  background<span class="op">-</span>color<span class="op">:</span> #<span class="dv">343</span>a40 <span class="op">!</span>important<span class="op">;</span></span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>  color<span class="op">:</span> #ffffff <span class="op">!</span>important<span class="op">;</span></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>  border<span class="op">-</span>color<span class="op">:</span> #<span class="dv">495057</span> <span class="op">!</span>important<span class="op">;</span></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a><span class="op">.</span><span class="fu">table</span><span class="op">-</span>striped tbody tr<span class="op">:</span>nth<span class="op">-</span>of<span class="op">-</span><span class="fu">type</span><span class="op">(</span>odd<span class="op">)</span> td <span class="op">{</span></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>  background<span class="op">-</span>color<span class="op">:</span> #<span class="dv">495057</span> <span class="op">!</span>important<span class="op">;</span></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>  color<span class="op">:</span> #ffffff <span class="op">!</span>important<span class="op">;</span></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a><span class="op">.</span><span class="fu">table</span><span class="op">-</span>hover tbody tr<span class="op">:</span>hover td <span class="op">{</span></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>  background<span class="op">-</span>color<span class="op">:</span> #<span class="dv">6</span>c757d <span class="op">!</span>important<span class="op">;</span></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>  color<span class="op">:</span> #ffffff <span class="op">!</span>important<span class="op">;</span></span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a><span class="in">```{r cargar-datos}</span></span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar serie original - RUTA ACTUALIZADA</span></span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>serie_original <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/processed/AAPL_full.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">real =</span> close) <span class="sc">|&gt;</span></span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date, real, daily_return, weekly_return, monthly_return, yoy_return)</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar modelos predictivos - RUTAS ACTUALIZADAS</span></span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>model_montecarlo <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"models/MonteCarlo/model_montecarlo_AAPL.rds"</span>)</span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>model_ARIMA <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"models/ARIMA/model_ARIMA_AAPL.rds"</span>)</span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>model_regression <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"models/Regression/model_regression_AAPL.rds"</span>)</span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>model_SMA <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"models/SMA/model_SMA_AAPL.rds"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">pred =</span> sma_prediction)</span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para preparar datos de modelo</span></span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>preparar_modelo <span class="ot">&lt;-</span> <span class="cf">function</span>(modelo_data, nombre_modelo) {</span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>  modelo_data <span class="sc">|&gt;</span></span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>      <span class="at">date =</span> <span class="fu">as.Date</span>(date),</span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>      <span class="at">modelo =</span> nombre_modelo</span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(date, <span class="at">pred =</span> pred, modelo)</span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a><span class="co"># Preparar datos de todos los modelos</span></span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a>modelos_data <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">preparar_modelo</span>(model_montecarlo, <span class="st">"Monte Carlo"</span>),</span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">preparar_modelo</span>(model_ARIMA, <span class="st">"ARIMA"</span>),</span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a>  <span class="fu">preparar_modelo</span>(model_regression, <span class="st">"Regresión"</span>),</span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">preparar_modelo</span>(model_SMA, <span class="st">"SMA"</span>)</span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a><span class="co"># Combinar serie real con predicciones</span></span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a>datos_completos <span class="ot">&lt;-</span> serie_original <span class="sc">|&gt;</span></span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(modelos_data, <span class="at">by =</span> <span class="st">"date"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date)</span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a><span class="co"># Separar datos históricos de predicciones futuras</span></span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a>fecha_hoy <span class="ot">&lt;-</span> <span class="fu">Sys.Date</span>()</span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a>datos_historicos <span class="ot">&lt;-</span> datos_completos <span class="sc">|&gt;</span></span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(date <span class="sc">&lt;</span> fecha_hoy, <span class="sc">!</span><span class="fu">is.na</span>(real))</span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>datos_futuros <span class="ot">&lt;-</span> datos_completos <span class="sc">|&gt;</span></span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(date <span class="sc">&gt;=</span> fecha_hoy <span class="sc">|</span> <span class="fu">is.na</span>(real)) <span class="sc">|&gt;</span></span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pred))</span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráfico Principal de Comparación de Modelos</span></span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a><span class="in">```{r grafico-principal, fig.height=6, fig.width=10, fig.align='center', dpi=300}</span></span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener los últimos 30 días para mejor visualización</span></span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>fecha_inicio <span class="ot">&lt;-</span> <span class="fu">max</span>(datos_historicos<span class="sc">$</span>date) <span class="sc">-</span> <span class="fu">days</span>(<span class="dv">40</span>)</span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtrar datos para el gráfico</span></span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a>datos_grafico <span class="ot">&lt;-</span> datos_completos <span class="sc">|&gt;</span></span>
+<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(date <span class="sc">&gt;=</span> fecha_inicio) <span class="sc">|&gt;</span></span>
+<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Crear serie continua para valores reales</span></span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">real_continuo =</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(real), real, <span class="cn">NA</span>))</span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el gráfico</span></span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos_grafico, <span class="fu">aes</span>(<span class="at">x =</span> date)) <span class="sc">+</span></span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Línea de valores reales</span></span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">y =</span> real_continuo),</span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">1.2</span>,</span>
+<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Líneas de predicciones por modelo</span></span>
+<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> pred, <span class="at">color =</span> modelo), <span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Puntos para el día de mañana</span></span>
+<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">filter</span>(datos_grafico, date <span class="sc">==</span> fecha_hoy),</span>
+<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">y =</span> pred, <span class="at">color =</span> modelo),</span>
+<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Línea vertical para marcar "hoy"</span></span>
+<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(</span>
+<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a>    <span class="at">xintercept =</span> <span class="fu">as.numeric</span>(fecha_hoy),</span>
+<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span>,</span>
+<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"gray50"</span>,</span>
+<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.7</span></span>
+<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">"qual"</span>, <span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Comparación de Predicciones de Modelos - AAPL"</span>,</span>
+<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">paste</span>(</span>
+<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Datos históricos vs Predicciones |"</span>,</span>
+<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Línea punteada indica el día actual"</span></span>
+<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Fecha"</span>,</span>
+<span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Precio de Cierre ($)"</span>,</span>
+<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Modelo"</span></span>
+<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)</span>
+<span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_labels =</span> <span class="st">"%Y-%m-%d"</span>, <span class="at">date_breaks =</span> <span class="st">"3 days"</span>)</span>
+<span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a>:::: panel-tabset</span>
+<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tablas de Resultados</span></span>
+<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a><span class="fu">### Últimos 5 Valores Reales y Predicciones</span></span>
+<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a><span class="in">```{r tabla-resultados}</span></span>
+<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener los últimos 5 valores reales</span></span>
+<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a>ultimos_reales <span class="ot">&lt;-</span> datos_historicos <span class="sc">|&gt;</span></span>
+<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(real)) <span class="sc">|&gt;</span></span>
+<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(date)) <span class="sc">|&gt;</span></span>
+<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date, real) <span class="sc">|&gt;</span></span>
+<span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date)</span>
+<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener predicciones para esas fechas</span></span>
+<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a>predicciones_historicas <span class="ot">&lt;-</span> modelos_data <span class="sc">|&gt;</span></span>
+<span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(date <span class="sc">%in%</span> ultimos_reales<span class="sc">$</span>date) <span class="sc">|&gt;</span></span>
+<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> modelo, <span class="at">values_from =</span> pred, <span class="at">names_prefix =</span> <span class="st">"pred_"</span>)</span>
+<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener predicción para mañana</span></span>
+<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a>fecha_manana <span class="ot">&lt;-</span> fecha_hoy <span class="sc">+</span> <span class="fu">days</span>(<span class="dv">1</span>)</span>
+<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a>prediccion_manana <span class="ot">&lt;-</span> modelos_data <span class="sc">|&gt;</span></span>
+<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(date <span class="sc">==</span> fecha_manana) <span class="sc">|&gt;</span></span>
+<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb3-236"><a href="#cb3-236" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> modelo,</span>
+<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> pred,</span>
+<span id="cb3-238"><a href="#cb3-238" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_prefix =</span> <span class="st">"pred_"</span></span>
+<span id="cb3-239"><a href="#cb3-239" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">real =</span> <span class="cn">NA</span>, <span class="at">tipo =</span> <span class="st">"Predicción"</span>)</span>
+<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a><span class="co"># Combinar datos históricos con predicción de mañana</span></span>
+<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a>tabla_resultados <span class="ot">&lt;-</span> ultimos_reales <span class="sc">|&gt;</span></span>
+<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(predicciones_historicas, <span class="at">by =</span> <span class="st">"date"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-245"><a href="#cb3-245" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tipo =</span> <span class="st">"Real"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(</span>
+<span id="cb3-247"><a href="#cb3-247" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tibble</span>(</span>
+<span id="cb3-248"><a href="#cb3-248" aria-hidden="true" tabindex="-1"></a>      <span class="at">date =</span> fecha_manana,</span>
+<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a>      <span class="at">real =</span> <span class="cn">NA</span>,</span>
+<span id="cb3-250"><a href="#cb3-250" aria-hidden="true" tabindex="-1"></a>      <span class="at">tipo =</span> <span class="st">"Predicción"</span></span>
+<span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a>      <span class="fu">left_join</span>(prediccion_manana <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>tipo), <span class="at">by =</span> <span class="st">"date"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">tipo =</span> <span class="st">"Predicción"</span>)</span>
+<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb3-255"><a href="#cb3-255" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date, tipo, real, <span class="fu">starts_with</span>(<span class="st">"pred_"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb3-256"><a href="#cb3-256" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-257"><a href="#cb3-257" aria-hidden="true" tabindex="-1"></a>    <span class="at">real =</span> <span class="fu">round</span>(real, <span class="dv">2</span>),</span>
+<span id="cb3-258"><a href="#cb3-258" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"pred_"</span>), <span class="sc">~</span> <span class="fu">round</span>(.x, <span class="dv">2</span>))</span>
+<span id="cb3-259"><a href="#cb3-259" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-260"><a href="#cb3-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-261"><a href="#cb3-261" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear tabla formateada</span></span>
+<span id="cb3-262"><a href="#cb3-262" aria-hidden="true" tabindex="-1"></a>tabla_formateada <span class="ot">&lt;-</span> tabla_resultados <span class="sc">|&gt;</span></span>
+<span id="cb3-263"><a href="#cb3-263" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb3-264"><a href="#cb3-264" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Fecha"</span> <span class="ot">=</span> date,</span>
+<span id="cb3-265"><a href="#cb3-265" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Tipo"</span> <span class="ot">=</span> tipo,</span>
+<span id="cb3-266"><a href="#cb3-266" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Real"</span> <span class="ot">=</span> real,</span>
+<span id="cb3-267"><a href="#cb3-267" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Monte Carlo"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">pred_Monte Carlo</span><span class="st">`</span>,</span>
+<span id="cb3-268"><a href="#cb3-268" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ARIMA"</span> <span class="ot">=</span> pred_ARIMA,</span>
+<span id="cb3-269"><a href="#cb3-269" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Regresión"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">pred_Regresión</span><span class="st">`</span>,</span>
+<span id="cb3-270"><a href="#cb3-270" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SMA"</span> <span class="ot">=</span> pred_SMA</span>
+<span id="cb3-271"><a href="#cb3-271" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-272"><a href="#cb3-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-273"><a href="#cb3-273" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar tabla</span></span>
+<span id="cb3-274"><a href="#cb3-274" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(</span>
+<span id="cb3-275"><a href="#cb3-275" aria-hidden="true" tabindex="-1"></a>  tabla_formateada,</span>
+<span id="cb3-276"><a href="#cb3-276" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"Últimos 5 Valores Reales y Predicciones de Modelos"</span>,</span>
+<span id="cb3-277"><a href="#cb3-277" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="st">"c"</span></span>
+<span id="cb3-278"><a href="#cb3-278" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb3-279"><a href="#cb3-279" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>))</span>
+<span id="cb3-280"><a href="#cb3-280" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-281"><a href="#cb3-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-282"><a href="#cb3-282" aria-hidden="true" tabindex="-1"></a><span class="fu">### Resumen de Predicción para Mañana</span></span>
+<span id="cb3-283"><a href="#cb3-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-284"><a href="#cb3-284" aria-hidden="true" tabindex="-1"></a><span class="in">```{r resumen-manana}</span></span>
+<span id="cb3-285"><a href="#cb3-285" aria-hidden="true" tabindex="-1"></a>prediccion_manana_resumen <span class="ot">&lt;-</span> modelos_data <span class="sc">|&gt;</span></span>
+<span id="cb3-286"><a href="#cb3-286" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(date <span class="sc">==</span> fecha_manana) <span class="sc">|&gt;</span></span>
+<span id="cb3-287"><a href="#cb3-287" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pred =</span> <span class="fu">round</span>(pred, <span class="dv">2</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb3-288"><a href="#cb3-288" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(modelo)</span>
+<span id="cb3-289"><a href="#cb3-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-290"><a href="#cb3-290" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(</span>
+<span id="cb3-291"><a href="#cb3-291" aria-hidden="true" tabindex="-1"></a>  prediccion_manana_resumen <span class="sc">|&gt;</span></span>
+<span id="cb3-292"><a href="#cb3-292" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="st">"Modelo"</span> <span class="ot">=</span> modelo, <span class="st">"Fecha"</span> <span class="ot">=</span> date, <span class="st">"Predicción ($)"</span> <span class="ot">=</span> pred),</span>
+<span id="cb3-293"><a href="#cb3-293" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="fu">paste</span>(<span class="st">"Predicciones para"</span>, <span class="fu">format</span>(fecha_manana, <span class="st">"%Y-%m-%d"</span>)),</span>
+<span id="cb3-294"><a href="#cb3-294" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="st">"c"</span></span>
+<span id="cb3-295"><a href="#cb3-295" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb3-296"><a href="#cb3-296" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>))</span>
+<span id="cb3-297"><a href="#cb3-297" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-298"><a href="#cb3-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-299"><a href="#cb3-299" aria-hidden="true" tabindex="-1"></a><span class="fu">### Análisis de Dispersión</span></span>
+<span id="cb3-300"><a href="#cb3-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-301"><a href="#cb3-301" aria-hidden="true" tabindex="-1"></a><span class="in">```{r estadisticas-predicciones}</span></span>
+<span id="cb3-302"><a href="#cb3-302" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular estadísticas de las predicciones para mañana</span></span>
+<span id="cb3-303"><a href="#cb3-303" aria-hidden="true" tabindex="-1"></a>stats_manana <span class="ot">&lt;-</span> prediccion_manana_resumen <span class="sc">|&gt;</span></span>
+<span id="cb3-304"><a href="#cb3-304" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb3-305"><a href="#cb3-305" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Predicción Mínima"</span> <span class="ot">=</span> <span class="fu">min</span>(pred, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-306"><a href="#cb3-306" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Predicción Máxima"</span> <span class="ot">=</span> <span class="fu">max</span>(pred, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-307"><a href="#cb3-307" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Predicción Media"</span> <span class="ot">=</span> <span class="fu">mean</span>(pred, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-308"><a href="#cb3-308" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Desviación Estándar"</span> <span class="ot">=</span> <span class="fu">sd</span>(pred, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-309"><a href="#cb3-309" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Rango"</span> <span class="ot">=</span> <span class="fu">max</span>(pred, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fu">min</span>(pred, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-310"><a href="#cb3-310" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb3-311"><a href="#cb3-311" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">round</span>(.x, <span class="dv">2</span>)))</span>
+<span id="cb3-312"><a href="#cb3-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-313"><a href="#cb3-313" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(</span>
+<span id="cb3-314"><a href="#cb3-314" aria-hidden="true" tabindex="-1"></a>  stats_manana,</span>
+<span id="cb3-315"><a href="#cb3-315" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"Estadísticas de las Predicciones para Mañana"</span>,</span>
+<span id="cb3-316"><a href="#cb3-316" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="st">"c"</span></span>
+<span id="cb3-317"><a href="#cb3-317" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb3-318"><a href="#cb3-318" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>))</span>
+<span id="cb3-319"><a href="#cb3-319" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-320"><a href="#cb3-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-321"><a href="#cb3-321" aria-hidden="true" tabindex="-1"></a><span class="fu">## Análisis por Modelo</span></span>
+<span id="cb3-322"><a href="#cb3-322" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-323"><a href="#cb3-323" aria-hidden="true" tabindex="-1"></a><span class="fu">### Visualización de Modelos {.tabset}</span></span>
+<span id="cb3-324"><a href="#cb3-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-325"><a href="#cb3-325" aria-hidden="true" tabindex="-1"></a><span class="fu">#### ARIMA</span></span>
+<span id="cb3-326"><a href="#cb3-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-327"><a href="#cb3-327" aria-hidden="true" tabindex="-1"></a><span class="in">```{r arima-image, fig.align='center', out.width='100%'}</span></span>
+<span id="cb3-328"><a href="#cb3-328" aria-hidden="true" tabindex="-1"></a><span class="co"># Usar ruta local copiada</span></span>
+<span id="cb3-329"><a href="#cb3-329" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"plots/AAPL/ARIMA_AAPL.png"</span>)</span>
+<span id="cb3-330"><a href="#cb3-330" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-331"><a href="#cb3-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-332"><a href="#cb3-332" aria-hidden="true" tabindex="-1"></a>**Descripción del Modelo ARIMA:**</span>
+<span id="cb3-333"><a href="#cb3-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-334"><a href="#cb3-334" aria-hidden="true" tabindex="-1"></a>El modelo ARIMA (AutoRegressive Integrated Moving Average) es una técnica de series temporales que combina componentes autorregresivos, de diferenciación e integración, y de media móvil. Este modelo es especialmente efectivo para datos que muestran tendencias y patrones estacionales.</span>
+<span id="cb3-335"><a href="#cb3-335" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-336"><a href="#cb3-336" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Monte Carlo</span></span>
+<span id="cb3-337"><a href="#cb3-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-338"><a href="#cb3-338" aria-hidden="true" tabindex="-1"></a><span class="in">```{r montecarlo-image, fig.align='center', out.width='100%'}</span></span>
+<span id="cb3-339"><a href="#cb3-339" aria-hidden="true" tabindex="-1"></a><span class="co"># Usar ruta local copiada</span></span>
+<span id="cb3-340"><a href="#cb3-340" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"plots/AAPL/MonteCarlo_AAPL.png"</span>)</span>
+<span id="cb3-341"><a href="#cb3-341" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-342"><a href="#cb3-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-343"><a href="#cb3-343" aria-hidden="true" tabindex="-1"></a>**Descripción del Modelo Monte Carlo:**</span>
+<span id="cb3-344"><a href="#cb3-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-345"><a href="#cb3-345" aria-hidden="true" tabindex="-1"></a>La simulación Monte Carlo utiliza muestreo aleatorio repetido para modelar el comportamiento de sistemas complejos. En el contexto financiero, este método genera múltiples escenarios posibles para predecir los movimientos futuros del precio, proporcionando una estimación probabilística.</span>
+<span id="cb3-346"><a href="#cb3-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-347"><a href="#cb3-347" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Regresión</span></span>
+<span id="cb3-348"><a href="#cb3-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-349"><a href="#cb3-349" aria-hidden="true" tabindex="-1"></a><span class="in">```{r regression-image, fig.align='center', out.width='100%'}</span></span>
+<span id="cb3-350"><a href="#cb3-350" aria-hidden="true" tabindex="-1"></a><span class="co"># Usar ruta local copiada</span></span>
+<span id="cb3-351"><a href="#cb3-351" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"plots/AAPL/Regression_AAPL.png"</span>)</span>
+<span id="cb3-352"><a href="#cb3-352" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-353"><a href="#cb3-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-354"><a href="#cb3-354" aria-hidden="true" tabindex="-1"></a>**Descripción del Modelo de Regresión:**</span>
+<span id="cb3-355"><a href="#cb3-355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-356"><a href="#cb3-356" aria-hidden="true" tabindex="-1"></a>El modelo de regresión establece una relación matemática entre las variables independientes (como indicadores técnicos, volumen, etc.) y la variable dependiente (precio de la acción). Este enfoque permite identificar patrones lineales o no lineales en los datos históricos.</span>
+<span id="cb3-357"><a href="#cb3-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-358"><a href="#cb3-358" aria-hidden="true" tabindex="-1"></a><span class="fu">#### SMA</span></span>
+<span id="cb3-359"><a href="#cb3-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-360"><a href="#cb3-360" aria-hidden="true" tabindex="-1"></a><span class="in">```{r sma-image, fig.align='center', out.width='100%'}</span></span>
+<span id="cb3-361"><a href="#cb3-361" aria-hidden="true" tabindex="-1"></a><span class="co"># Usar ruta local copiada</span></span>
+<span id="cb3-362"><a href="#cb3-362" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"plots/AAPL/SMA_AAPL.png"</span>)</span>
+<span id="cb3-363"><a href="#cb3-363" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-364"><a href="#cb3-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-365"><a href="#cb3-365" aria-hidden="true" tabindex="-1"></a>**Descripción del Modelo SMA:**</span>
+<span id="cb3-366"><a href="#cb3-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-367"><a href="#cb3-367" aria-hidden="true" tabindex="-1"></a>La Media Móvil Simple (SMA) calcula el promedio de los precios durante un período específico. Es uno de los indicadores técnicos más básicos pero efectivos, que ayuda a suavizar las fluctuaciones de precios y identificar tendencias direccionales.</span>
+<span id="cb3-368"><a href="#cb3-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-369"><a href="#cb3-369" aria-hidden="true" tabindex="-1"></a><span class="fu">## Métricas de Evaluación</span></span>
+<span id="cb3-370"><a href="#cb3-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-371"><a href="#cb3-371" aria-hidden="true" tabindex="-1"></a><span class="fu">### Comparación de Rendimiento por Modelo</span></span>
+<span id="cb3-372"><a href="#cb3-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-373"><a href="#cb3-373" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
+<span id="cb3-374"><a href="#cb3-374" aria-hidden="true" tabindex="-1"></a><span class="fu">## Nota sobre Métricas de Evaluación</span></span>
+<span id="cb3-375"><a href="#cb3-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-376"><a href="#cb3-376" aria-hidden="true" tabindex="-1"></a>Las métricas de evaluación se cargarán desde:</span>
+<span id="cb3-377"><a href="#cb3-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-378"><a href="#cb3-378" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`output/tables/AAPL/model_MonteCarlo_metrics.csv`</span></span>
+<span id="cb3-379"><a href="#cb3-379" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`output/tables/AAPL/model_ARIMA_metrics.csv`</span></span>
+<span id="cb3-380"><a href="#cb3-380" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`output/tables/AAPL/model_Regression_metrics.csv`</span></span>
+<span id="cb3-381"><a href="#cb3-381" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`output/tables/AAPL/model_SMA_metrics.csv`</span></span>
+<span id="cb3-382"><a href="#cb3-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-383"><a href="#cb3-383" aria-hidden="true" tabindex="-1"></a>**Métricas a incluir:** - **MAE:** Mean Absolute Error (Error Absoluto Medio) - **RMSE:** Root Mean Square Error (Raíz del Error Cuadrático Medio) - **MAPE:** Mean Absolute Percentage Error (Error Absoluto Porcentual Medio) - **R²:** Coeficiente de Determinación</span>
+<span id="cb3-384"><a href="#cb3-384" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-385"><a href="#cb3-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-386"><a href="#cb3-386" aria-hidden="true" tabindex="-1"></a><span class="in">```{r metricas-evaluacion, eval=TRUE}</span></span>
+<span id="cb3-387"><a href="#cb3-387" aria-hidden="true" tabindex="-1"></a><span class="co"># Intentar cargar métricas reales</span></span>
+<span id="cb3-388"><a href="#cb3-388" aria-hidden="true" tabindex="-1"></a>metricas_todos <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(</span>
+<span id="cb3-389"><a href="#cb3-389" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">"MonteCarlo"</span>, <span class="st">"ARIMA"</span>, <span class="st">"Regression"</span>, <span class="st">"SMA"</span>),</span>
+<span id="cb3-390"><a href="#cb3-390" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(modelo) {</span>
+<span id="cb3-391"><a href="#cb3-391" aria-hidden="true" tabindex="-1"></a>    archivo <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">"output"</span>, <span class="st">"tables"</span>, <span class="st">"AAPL"</span>, <span class="fu">paste0</span>(<span class="st">"model_"</span>, modelo, <span class="st">"_metrics.csv"</span>))</span>
+<span id="cb3-392"><a href="#cb3-392" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">file.exists</span>(archivo)) {</span>
+<span id="cb3-393"><a href="#cb3-393" aria-hidden="true" tabindex="-1"></a>      <span class="fu">tryCatch</span>({</span>
+<span id="cb3-394"><a href="#cb3-394" aria-hidden="true" tabindex="-1"></a>        <span class="fu">read_csv</span>(archivo, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-395"><a href="#cb3-395" aria-hidden="true" tabindex="-1"></a>          <span class="fu">mutate</span>(<span class="at">Modelo =</span> modelo) <span class="sc">|&gt;</span></span>
+<span id="cb3-396"><a href="#cb3-396" aria-hidden="true" tabindex="-1"></a>          <span class="fu">select</span>(Modelo, <span class="fu">everything</span>())</span>
+<span id="cb3-397"><a href="#cb3-397" aria-hidden="true" tabindex="-1"></a>      }, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb3-398"><a href="#cb3-398" aria-hidden="true" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="st">"Error cargando métricas para"</span>, modelo, <span class="st">":"</span>, e<span class="sc">$</span>message, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb3-399"><a href="#cb3-399" aria-hidden="true" tabindex="-1"></a>        <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb3-400"><a href="#cb3-400" aria-hidden="true" tabindex="-1"></a>      })</span>
+<span id="cb3-401"><a href="#cb3-401" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb3-402"><a href="#cb3-402" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cat</span>(<span class="st">"Archivo no encontrado:"</span>, archivo, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb3-403"><a href="#cb3-403" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb3-404"><a href="#cb3-404" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-405"><a href="#cb3-405" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-406"><a href="#cb3-406" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-407"><a href="#cb3-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-408"><a href="#cb3-408" aria-hidden="true" tabindex="-1"></a><span class="co"># Si no hay métricas reales, usar tabla de ejemplo</span></span>
+<span id="cb3-409"><a href="#cb3-409" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">is.null</span>(metricas_todos) <span class="sc">||</span> <span class="fu">nrow</span>(metricas_todos) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb3-410"><a href="#cb3-410" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"Usando métricas de ejemplo - archivos de métricas no encontrados</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb3-411"><a href="#cb3-411" aria-hidden="true" tabindex="-1"></a>  metricas_todos <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb3-412"><a href="#cb3-412" aria-hidden="true" tabindex="-1"></a>    <span class="at">Modelo =</span> <span class="fu">c</span>(<span class="st">"ARIMA"</span>, <span class="st">"Monte Carlo"</span>, <span class="st">"Regresión"</span>, <span class="st">"SMA"</span>),</span>
+<span id="cb3-413"><a href="#cb3-413" aria-hidden="true" tabindex="-1"></a>    <span class="at">MAE =</span> <span class="fu">c</span>(<span class="fl">2.45</span>, <span class="fl">3.12</span>, <span class="fl">2.87</span>, <span class="fl">4.23</span>),</span>
+<span id="cb3-414"><a href="#cb3-414" aria-hidden="true" tabindex="-1"></a>    <span class="at">RMSE =</span> <span class="fu">c</span>(<span class="fl">3.21</span>, <span class="fl">4.05</span>, <span class="fl">3.78</span>, <span class="fl">5.67</span>),</span>
+<span id="cb3-415"><a href="#cb3-415" aria-hidden="true" tabindex="-1"></a>    <span class="at">MAPE =</span> <span class="fu">c</span>(<span class="fl">1.85</span>, <span class="fl">2.34</span>, <span class="fl">2.12</span>, <span class="fl">3.45</span>),</span>
+<span id="cb3-416"><a href="#cb3-416" aria-hidden="true" tabindex="-1"></a>    <span class="at">R2 =</span> <span class="fu">c</span>(<span class="fl">0.924</span>, <span class="fl">0.887</span>, <span class="fl">0.901</span>, <span class="fl">0.823</span>)</span>
+<span id="cb3-417"><a href="#cb3-417" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-418"><a href="#cb3-418" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-419"><a href="#cb3-419" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-420"><a href="#cb3-420" aria-hidden="true" tabindex="-1"></a><span class="co"># Renderizar tabla</span></span>
+<span id="cb3-421"><a href="#cb3-421" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(</span>
+<span id="cb3-422"><a href="#cb3-422" aria-hidden="true" tabindex="-1"></a>  metricas_todos,</span>
+<span id="cb3-423"><a href="#cb3-423" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb3-424"><a href="#cb3-424" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"Métricas de Evaluación por Modelo"</span>,</span>
+<span id="cb3-425"><a href="#cb3-425" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="fu">rep</span>(<span class="st">"c"</span>, <span class="fu">ncol</span>(metricas_todos) <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb3-426"><a href="#cb3-426" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb3-427"><a href="#cb3-427" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb3-428"><a href="#cb3-428" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-429"><a href="#cb3-429" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">add_footnote</span>(<span class="st">"Valores menores indican mejor rendimiento para MAE, RMSE y MAPE. Valores mayores indican mejor rendimiento para R²."</span>)</span>
+<span id="cb3-430"><a href="#cb3-430" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-431"><a href="#cb3-431" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-432"><a href="#cb3-432" aria-hidden="true" tabindex="-1"></a><span class="fu">### Interpretación de Métricas</span></span>
+<span id="cb3-433"><a href="#cb3-433" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-434"><a href="#cb3-434" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**MAE (Error Absoluto Medio):** Mide la diferencia promedio entre valores predichos y reales. Valores menores indican mejor precisión.</span>
+<span id="cb3-435"><a href="#cb3-435" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-436"><a href="#cb3-436" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**RMSE (Raíz del Error Cuadrático Medio):** Penaliza más los errores grandes que el MAE. Útil cuando los errores grandes son especialmente indeseables.</span>
+<span id="cb3-437"><a href="#cb3-437" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-438"><a href="#cb3-438" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**MAPE (Error Absoluto Porcentual Medio):** Expresa el error como porcentaje, facilitando la interpretación independientemente de la escala de los datos.</span>
+<span id="cb3-439"><a href="#cb3-439" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-440"><a href="#cb3-440" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**R² (Coeficiente de Determinación):** Indica qué proporción de la variabilidad de los datos es explicada por el modelo. Valores cercanos a 1 indican mejor ajuste.</span>
+<span id="cb3-441"><a href="#cb3-441" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb3-442"><a href="#cb3-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-443"><a href="#cb3-443" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gestión de Riesgos</span></span>
+<span id="cb3-444"><a href="#cb3-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-445"><a href="#cb3-445" aria-hidden="true" tabindex="-1"></a><span class="in">```{r risk-management}</span></span>
+<span id="cb3-446"><a href="#cb3-446" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar script de métricas de riesgo - RUTA ACTUALIZADA</span></span>
+<span id="cb3-447"><a href="#cb3-447" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"R/risk metrics.R"</span>)</span>
+<span id="cb3-448"><a href="#cb3-448" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-449"><a href="#cb3-449" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular métricas de riesgo para cada frecuencia</span></span>
+<span id="cb3-450"><a href="#cb3-450" aria-hidden="true" tabindex="-1"></a>daily_metrics <span class="ot">&lt;-</span> <span class="fu">calculate_risk_metrics</span>(<span class="fu">na.omit</span>(serie_original<span class="sc">$</span>daily_return))</span>
+<span id="cb3-451"><a href="#cb3-451" aria-hidden="true" tabindex="-1"></a>weekly_metrics <span class="ot">&lt;-</span> <span class="fu">calculate_risk_metrics</span>(<span class="fu">na.omit</span>(serie_original<span class="sc">$</span>weekly_return))</span>
+<span id="cb3-452"><a href="#cb3-452" aria-hidden="true" tabindex="-1"></a>monthly_metrics <span class="ot">&lt;-</span> <span class="fu">calculate_risk_metrics</span>(<span class="fu">na.omit</span>(serie_original<span class="sc">$</span>monthly_return))</span>
+<span id="cb3-453"><a href="#cb3-453" aria-hidden="true" tabindex="-1"></a>yoy_metrics <span class="ot">&lt;-</span> <span class="fu">calculate_risk_metrics</span>(<span class="fu">na.omit</span>(serie_original<span class="sc">$</span>yoy_return))</span>
+<span id="cb3-454"><a href="#cb3-454" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-455"><a href="#cb3-455" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-456"><a href="#cb3-456" aria-hidden="true" tabindex="-1"></a><span class="fu">### Métricas de Riesgo por Frecuencia</span></span>
+<span id="cb3-457"><a href="#cb3-457" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-458"><a href="#cb3-458" aria-hidden="true" tabindex="-1"></a><span class="in">```{r render-risk-tables}</span></span>
+<span id="cb3-459"><a href="#cb3-459" aria-hidden="true" tabindex="-1"></a><span class="co"># Combinar todas las métricas en una sola tabla</span></span>
+<span id="cb3-460"><a href="#cb3-460" aria-hidden="true" tabindex="-1"></a>risk_combined <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-461"><a href="#cb3-461" aria-hidden="true" tabindex="-1"></a>  Métrica <span class="ot">=</span> <span class="fu">rownames</span>(daily_metrics),</span>
+<span id="cb3-462"><a href="#cb3-462" aria-hidden="true" tabindex="-1"></a>  <span class="at">Diario =</span> <span class="fu">paste0</span>(<span class="fu">round</span>(daily_metrics<span class="sc">$</span>Valor <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>), <span class="st">"%"</span>),</span>
+<span id="cb3-463"><a href="#cb3-463" aria-hidden="true" tabindex="-1"></a>  <span class="at">Semanal =</span> <span class="fu">paste0</span>(<span class="fu">round</span>(weekly_metrics<span class="sc">$</span>Valor <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>), <span class="st">"%"</span>),</span>
+<span id="cb3-464"><a href="#cb3-464" aria-hidden="true" tabindex="-1"></a>  <span class="at">Mensual =</span> <span class="fu">paste0</span>(<span class="fu">round</span>(monthly_metrics<span class="sc">$</span>Valor <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>), <span class="st">"%"</span>),</span>
+<span id="cb3-465"><a href="#cb3-465" aria-hidden="true" tabindex="-1"></a>  <span class="at">Anual =</span> <span class="fu">paste0</span>(<span class="fu">round</span>(yoy_metrics<span class="sc">$</span>Valor <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>), <span class="st">"%"</span>)</span>
+<span id="cb3-466"><a href="#cb3-466" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-467"><a href="#cb3-467" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-468"><a href="#cb3-468" aria-hidden="true" tabindex="-1"></a><span class="co"># Renderizar tabla unificada</span></span>
+<span id="cb3-469"><a href="#cb3-469" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(</span>
+<span id="cb3-470"><a href="#cb3-470" aria-hidden="true" tabindex="-1"></a>  risk_combined,</span>
+<span id="cb3-471"><a href="#cb3-471" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"Métricas de Riesgo por Frecuencia (en porcentajes)"</span>,</span>
+<span id="cb3-472"><a href="#cb3-472" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>)</span>
+<span id="cb3-473"><a href="#cb3-473" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb3-474"><a href="#cb3-474" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb3-475"><a href="#cb3-475" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-476"><a href="#cb3-476" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-477"><a href="#cb3-477" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-478"><a href="#cb3-478" aria-hidden="true" tabindex="-1"></a><span class="fu">### Interpretación de Métricas de Riesgo</span></span>
+<span id="cb3-479"><a href="#cb3-479" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-480"><a href="#cb3-480" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Volatilidad:** Medida de dispersión de los retornos. Mayor volatilidad indica mayor riesgo.</span>
+<span id="cb3-481"><a href="#cb3-481" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**VaR (Value at Risk):** Pérdida máxima esperada con un nivel de confianza determinado.</span>
+<span id="cb3-482"><a href="#cb3-482" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Expected Shortfall:** Pérdida promedio esperada en escenarios extremos.</span>
+<span id="cb3-483"><a href="#cb3-483" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Drawdown:** Caída máxima desde un pico hasta un valle en el período analizado.</span>
+<span id="cb3-484"><a href="#cb3-484" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-485"><a href="#cb3-485" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-486"><a href="#cb3-486" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-487"><a href="#cb3-487" aria-hidden="true" tabindex="-1"></a>**Fecha de generación:** <span class="in">`{r} Sys.time()`</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

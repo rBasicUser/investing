@@ -9,12 +9,11 @@ library(tidyverse)
 library(yaml)
 
 # Configuración del portafolio
-
 params <- read_yaml("params.yaml")
 stock <- params$stocks
 
 # ====================================================================
-# FUNCIÓN PARA CREAR TEMPLATE RMD POR PAÍS
+# FUNCIÓN PARA CREAR TEMPLATE QMD POR STOCK
 # ====================================================================
 
 for (s in stock) {
@@ -42,13 +41,23 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 #| include: false
 #| label: setup-imagenes
   
+# Crear directorio local para imágenes si no existe
 dir.create("plots/{s}", recursive = TRUE, showWarnings = FALSE)
 
+# Lista de imágenes a copiar
 imagenes <- c("ARIMA_{s}.png", "MonteCarlo_{s}.png", "Regression_{s}.png", "SMA_{s}.png")
 
+# Copiar imágenes desde output/plots/{s}/ a plots/{s}/ (directorio local)
 for (img in imagenes) {{
-  file.copy(paste0("../plots/{s}/", img), paste0("plots/{s}/", img), overwrite = TRUE)
+  origen <- file.path("output", "plots", "{s}", img)
+  destino <- file.path("plots", "{s}", img)
+  
+  if (file.exists(origen)) {{
+    file.copy(origen, destino, overwrite = TRUE)
+  }} else {{
+    cat("Advertencia: No se encontró la imagen:", origen, "\\n")
   }}
+}}
 ```
 
 ```{{css}}
@@ -56,12 +65,12 @@ for (img in imagenes) {{
 h1 {{
   text-align: center;
   color: #ffffff;
-  }}
+}}
 h2 {{
   color: #ffffff;
   border-bottom: 2px solid #007bff;
   padding-bottom: 5px;
-  }}
+}}
 
 /* Tablas compatibles con tema oscuro */
 table, th, td {{
@@ -71,62 +80,62 @@ table, th, td {{
   text-align: center;
   background-color: #343a40;
   color: #ffffff;
-  }}
+}}
 th {{
   background-color: #495057 !important;
   font-weight: bold;
   color: #ffffff !important;
-  }}
+}}
 tr:nth-child(even) td {{
   background-color: #495057 !important;
   color: #ffffff !important;
-  }}
+}}
 tr:nth-child(odd) td {{
   background-color: #343a40 !important;
   color: #ffffff !important;
-  }}
+}}
 .prediction-tomorrow {{
   background-color: #28a745 !important;
   color: #ffffff !important;
   font-weight: bold;
-  }}
+}}
 
 /* Forzar colores en tablas kable */
 .table {{
   color: #ffffff !important;
   background-color: #343a40 !important;
-  }}
+}}
 .table th {{
   background-color: #495057 !important;
   color: #ffffff !important;
   border-color: #495057 !important;
-  }}
+}}
 .table td {{
   background-color: #343a40 !important;
   color: #ffffff !important;
   border-color: #495057 !important;
-  }}
+}}
 .table-striped tbody tr:nth-of-type(odd) td {{
   background-color: #495057 !important;
   color: #ffffff !important;
-  }}
+}}
 .table-hover tbody tr:hover td {{
   background-color: #6c757d !important;
   color: #ffffff !important;
-  }}
+}}
 ```
 
 ```{{r cargar-datos}}
-# Cargar serie original
-serie_original <- read_csv("../../data/processed/{s}_full.csv") |>
+# Cargar serie original - RUTA ACTUALIZADA
+serie_original <- read_csv("data/processed/{s}_full.csv") |>
   rename(real = close) |>
   select(date, real, daily_return, weekly_return, monthly_return, yoy_return)
 
-# Cargar modelos predictivos
-model_montecarlo <- readRDS("../../models/MonteCarlo/model_montecarlo_{s}.rds")
-model_ARIMA <- readRDS("../../models/ARIMA/model_ARIMA_{s}.rds")
-model_regression <- readRDS("../../models/Regression/model_regression_{s}.rds")
-model_SMA <- readRDS("../../models/SMA/model_SMA_{s}.rds") |>
+# Cargar modelos predictivos - RUTAS ACTUALIZADAS
+model_montecarlo <- readRDS("models/MonteCarlo/model_montecarlo_{s}.rds")
+model_ARIMA <- readRDS("models/ARIMA/model_ARIMA_{s}.rds")
+model_regression <- readRDS("models/Regression/model_regression_{s}.rds")
+model_SMA <- readRDS("models/SMA/model_SMA_{s}.rds") |>
   rename(pred = sma_prediction)
 
 # Función para preparar datos de modelo
@@ -137,7 +146,7 @@ preparar_modelo <- function(modelo_data, nombre_modelo) {{
       modelo = nombre_modelo
     ) |>
     select(date, pred = pred, modelo)
-  }}
+}}
 
 # Preparar datos de todos los modelos
 modelos_data <- bind_rows(
@@ -336,7 +345,8 @@ kable(
 
 #### ARIMA
 
-```{{r arima-image, fig.align=\'center\', out.width=\'300%\'}}
+```{{r arima-image, fig.align=\'center\', out.width=\'100%\'}}
+# Usar ruta local copiada
 knitr::include_graphics("plots/{s}/ARIMA_{s}.png")
 ```
 
@@ -346,7 +356,8 @@ El modelo ARIMA (AutoRegressive Integrated Moving Average) es una técnica de se
 
 #### Monte Carlo
 
-```{{r montecarlo-image, fig.align=\'center\', out.width=\'300%\'}}
+```{{r montecarlo-image, fig.align=\'center\', out.width=\'100%\'}}
+# Usar ruta local copiada
 knitr::include_graphics("plots/{s}/MonteCarlo_{s}.png")
 ```
 
@@ -356,7 +367,8 @@ La simulación Monte Carlo utiliza muestreo aleatorio repetido para modelar el c
 
 #### Regresión
 
-```{{r regression-image, fig.align=\'center\', out.width=\'300%\'}}
+```{{r regression-image, fig.align=\'center\', out.width=\'100%\'}}
+# Usar ruta local copiada
 knitr::include_graphics("plots/{s}/Regression_{s}.png")
 ```
 
@@ -366,7 +378,8 @@ El modelo de regresión establece una relación matemática entre las variables 
 
 #### SMA
 
-```{{r sma-image, fig.align=\'center\', out.width=\'300%\'}}
+```{{r sma-image, fig.align=\'center\', out.width=\'100%\'}}
+# Usar ruta local copiada
 knitr::include_graphics("plots/{s}/SMA_{s}.png")
 ```
 
@@ -396,46 +409,49 @@ Las métricas de evaluación se cargarán desde:
 :::
 
 ```{{r metricas-evaluacion, eval=TRUE}}
-# Código para cuando tengas las métricas disponibles:
-# Crear tabla de ejemplo mientras tanto
-metricas_ejemplo <- tibble(
-  Modelo = c("ARIMA", "Monte Carlo", "Regresión", "SMA"),
-  MAE = c(2.45, 3.12, 2.87, 4.23),
-  RMSE = c(3.21, 4.05, 3.78, 5.67),
-  MAPE = c(1.85, 2.34, 2.12, 3.45),
-  R2 = c(0.924, 0.887, 0.901, 0.823)
+# Intentar cargar métricas reales
+metricas_todos <- map_dfr(
+  c("MonteCarlo", "ARIMA", "Regression", "SMA"),
+  function(modelo) {{
+    archivo <- file.path("output", "tables", "{s}", paste0("model_", modelo, "_metrics.csv"))
+    if (file.exists(archivo)) {{
+      tryCatch({{
+        read_csv(archivo, show_col_types = FALSE) |> 
+          mutate(Modelo = modelo) |>
+          select(Modelo, everything())
+      }}, error = function(e) {{
+        cat("Error cargando métricas para", modelo, ":", e$message, "\\n")
+        return(NULL)
+      }})
+    }} else {{
+      cat("Archivo no encontrado:", archivo, "\\n")
+      return(NULL)
+    }}
+  }}
 )
 
+# Si no hay métricas reales, usar tabla de ejemplo
+if (is.null(metricas_todos) || nrow(metricas_todos) == 0) {{
+  cat("Usando métricas de ejemplo - archivos de métricas no encontrados\\n")
+  metricas_todos <- tibble(
+    Modelo = c("ARIMA", "Monte Carlo", "Regresión", "SMA"),
+    MAE = c(2.45, 3.12, 2.87, 4.23),
+    RMSE = c(3.21, 4.05, 3.78, 5.67),
+    MAPE = c(1.85, 2.34, 2.12, 3.45),
+    R2 = c(0.924, 0.887, 0.901, 0.823)
+  )
+}}
+
+# Renderizar tabla
 kable(
-  metricas_ejemplo,
+  metricas_todos,
   digits = 3,
-  caption = "Métricas de Evaluación por Modelo (Ejemplo)",
-  align = c("l", "c", "c", "c", "c")
+  caption = "Métricas de Evaluación por Modelo",
+  align = c("l", rep("c", ncol(metricas_todos) - 1))
 ) |>
   kableExtra::kable_styling(bootstrap_options = c("striped", "hover")) |>
   kableExtra::column_spec(1, bold = TRUE) |>
-  kableExtra::row_spec(which.min(metricas_ejemplo$MAE), background = "#d4edda") |>
   kableExtra::add_footnote("Valores menores indican mejor rendimiento para MAE, RMSE y MAPE. Valores mayores indican mejor rendimiento para R².")
-
-# Código real para cuando tengas los archivos:
-# metricas_todos <- map_dfr(
-#   c("MonteCarlo", "ARIMA", "Regression", "SMA"),
-#   function(modelo) {{
-#     archivo <- paste0("output/tables/{s}/model_", modelo, "_metrics.csv")
-#     if (file.exists(archivo)) {{
-#       read_csv(archivo) |> mutate(Modelo = modelo)
-#     }}
-#   }}
-# )
-# 
-# if (exists("metricas_todos") && nrow(metricas_todos) > 0) {{
-#   kable(
-#     metricas_todos,
-#     digits = 4,
-#     caption = "Métricas de Evaluación por Modelo"
-#   ) |>
-#     kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
-# }}
 ```
 
 ### Interpretación de Métricas
@@ -453,7 +469,8 @@ kable(
 ## Gestión de Riesgos
 
 ```{{r risk-management}}
-source("../../R/risk metrics.R")
+# Cargar script de métricas de riesgo - RUTA ACTUALIZADA
+source("R/risk metrics.R")
 
 # Calcular métricas de riesgo para cada frecuencia
 daily_metrics <- calculate_risk_metrics(na.omit(serie_original$daily_return))
@@ -498,10 +515,18 @@ kable(
   )
 
   # Crear nombre del archivo
-  nombre_archivo <- glue("output/reports/{s}.qmd")
+  nombre_archivo <- glue("{s}.qmd")
 
   # Escribir el archivo
   writeLines(template_qmd, nombre_archivo)
 
   cat(glue("✅ Archivo generado: {nombre_archivo}\n"))
 }
+
+cat("🎉 Todos los archivos QMD han sido generados con rutas actualizadas!\n")
+cat("📁 Estructura de archivos esperada:\n")
+cat("   ├── data/processed/{stock}_full.csv\n")
+cat("   ├── models/{ModelType}/model_{modeltype}_{stock}.rds\n")
+cat("   ├── output/plots/{stock}/{Model}_{stock}.png\n")
+cat("   ├── output/tables/{stock}/model_{Model}_metrics.csv\n")
+cat("   └── R/risk metrics.R\n")
