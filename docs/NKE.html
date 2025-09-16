@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>nke</title>
+<title>NKE – Visualización de Modelos Predictivos</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,11 +59,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./PEP.html" rel="next">
+<link href="./K.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -73,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1688d9e1630bd0bcb1ec498477fd8fb7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-0b1994249ac9155366ffd90a23cd4e8c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -109,38 +112,152 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="quarto-light">
+<body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AAPL.html">Análisis de Acciones</a></li><li class="breadcrumb-item"><a href="./NKE.html">NKE</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Visualización de Modelos Predictivos</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Prefacio</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Análisis de Acciones</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AAPL.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AAPL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ABEV.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ABEV</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ADSK.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADSK</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GOOGL.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GOOGL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./JPM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">JPM</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./K.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">K</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./NKE.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">NKE</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./PEP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PEP</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./WMT.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">WMT</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#nke" id="toc-nke" class="nav-link active" data-scroll-target="#nke">NKE</a>
+  <li><a href="#gráfico-principal-de-comparación-de-modelos" id="toc-gráfico-principal-de-comparación-de-modelos" class="nav-link active" data-scroll-target="#gráfico-principal-de-comparación-de-modelos">Gráfico Principal de Comparación de Modelos</a></li>
+  <li><a href="#gestión-de-riesgos" id="toc-gestión-de-riesgos" class="nav-link" data-scroll-target="#gestión-de-riesgos">Gestión de Riesgos</a>
   <ul class="collapse">
-  <li><a href="#gráfico-principal-de-comparación-de-modelos" id="toc-gráfico-principal-de-comparación-de-modelos" class="nav-link" data-scroll-target="#gráfico-principal-de-comparación-de-modelos"><span class="header-section-number">0.1</span> Gráfico Principal de Comparación de Modelos</a></li>
-  <li><a href="#gestión-de-riesgos" id="toc-gestión-de-riesgos" class="nav-link" data-scroll-target="#gestión-de-riesgos"><span class="header-section-number">0.2</span> Gestión de Riesgos</a>
-  <ul class="collapse">
-  <li><a href="#métricas-de-riesgo-por-frecuencia" id="toc-métricas-de-riesgo-por-frecuencia" class="nav-link" data-scroll-target="#métricas-de-riesgo-por-frecuencia"><span class="header-section-number">0.2.1</span> Métricas de Riesgo por Frecuencia</a></li>
-  <li><a href="#interpretación-de-métricas-de-riesgo" id="toc-interpretación-de-métricas-de-riesgo" class="nav-link" data-scroll-target="#interpretación-de-métricas-de-riesgo"><span class="header-section-number">0.2.2</span> Interpretación de Métricas de Riesgo</a></li>
-  </ul></li>
+  <li><a href="#métricas-de-riesgo-por-frecuencia" id="toc-métricas-de-riesgo-por-frecuencia" class="nav-link" data-scroll-target="#métricas-de-riesgo-por-frecuencia">Métricas de Riesgo por Frecuencia</a></li>
+  <li><a href="#interpretación-de-métricas-de-riesgo" id="toc-interpretación-de-métricas-de-riesgo" class="nav-link" data-scroll-target="#interpretación-de-métricas-de-riesgo">Interpretación de Métricas de Riesgo</a></li>
   </ul></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="NKE.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7"></h1></header><div class="quarto-title-block"><div class="quarto-title-tools-only"><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AAPL.html">Análisis de Acciones</a></li><li class="breadcrumb-item"><a href="./NKE.html">NKE</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">NKE</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="nke" class="level1 unnumbered">
-<h1 class="unnumbered">NKE</h1>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -223,8 +340,8 @@ tr:nth-child(odd) td {
 }
 </style>
 </div>
-<section id="gráfico-principal-de-comparación-de-modelos" class="level2" data-number="0.1">
-<h2 data-number="0.1" class="anchored" data-anchor-id="gráfico-principal-de-comparación-de-modelos"><span class="header-section-number">0.1</span> Gráfico Principal de Comparación de Modelos</h2>
+<section id="gráfico-principal-de-comparación-de-modelos" class="level2">
+<h2 class="anchored" data-anchor-id="gráfico-principal-de-comparación-de-modelos">Gráfico Principal de Comparación de Modelos</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -235,11 +352,11 @@ tr:nth-child(odd) td {
 </div>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Tablas de Resultados</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Análisis por Modelo</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Métricas de Evaluación</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Tablas de Resultados</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Análisis por Modelo</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Métricas de Evaluación</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<section id="últimos-5-valores-reales-y-predicciones" class="level3" data-number="0.1.1">
-<h3 data-number="0.1.1" class="anchored" data-anchor-id="últimos-5-valores-reales-y-predicciones"><span class="header-section-number">0.1.1</span> Últimos 5 Valores Reales y Predicciones</h3>
+<section id="últimos-5-valores-reales-y-predicciones" class="level3">
+<h3 class="anchored" data-anchor-id="últimos-5-valores-reales-y-predicciones">Últimos 5 Valores Reales y Predicciones</h3>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
@@ -315,8 +432,8 @@ tr:nth-child(odd) td {
 </div>
 </div>
 </section>
-<section id="resumen-de-predicción-para-mañana" class="level3" data-number="0.1.2">
-<h3 data-number="0.1.2" class="anchored" data-anchor-id="resumen-de-predicción-para-mañana"><span class="header-section-number">0.1.2</span> Resumen de Predicción para Mañana</h3>
+<section id="resumen-de-predicción-para-mañana" class="level3">
+<h3 class="anchored" data-anchor-id="resumen-de-predicción-para-mañana">Resumen de Predicción para Mañana</h3>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
@@ -354,8 +471,8 @@ tr:nth-child(odd) td {
 </div>
 </div>
 </section>
-<section id="análisis-de-dispersión" class="level3" data-number="0.1.3">
-<h3 data-number="0.1.3" class="anchored" data-anchor-id="análisis-de-dispersión"><span class="header-section-number">0.1.3</span> Análisis de Dispersión</h3>
+<section id="análisis-de-dispersión" class="level3">
+<h3 class="anchored" data-anchor-id="análisis-de-dispersión">Análisis de Dispersión</h3>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
@@ -384,10 +501,10 @@ tr:nth-child(odd) td {
 </section>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<section id="visualización-de-modelos" class="level3 tabset" data-number="0.1.4">
-<h3 class="tabset anchored" data-number="0.1.4" data-anchor-id="visualización-de-modelos"><span class="header-section-number">0.1.4</span> Visualización de Modelos</h3>
-<section id="arima" class="level4" data-number="0.1.4.1">
-<h4 data-number="0.1.4.1" class="anchored" data-anchor-id="arima"><span class="header-section-number">0.1.4.1</span> ARIMA</h4>
+<section id="visualización-de-modelos" class="level3 tabset">
+<h3 class="tabset anchored" data-anchor-id="visualización-de-modelos">Visualización de Modelos</h3>
+<section id="arima" class="level4">
+<h4 class="anchored" data-anchor-id="arima">ARIMA</h4>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -400,8 +517,8 @@ tr:nth-child(odd) td {
 <p><strong>Descripción del Modelo ARIMA:</strong></p>
 <p>El modelo ARIMA (AutoRegressive Integrated Moving Average) es una técnica de series temporales que combina componentes autorregresivos, de diferenciación e integración, y de media móvil. Este modelo es especialmente efectivo para datos que muestran tendencias y patrones estacionales.</p>
 </section>
-<section id="monte-carlo" class="level4" data-number="0.1.4.2">
-<h4 data-number="0.1.4.2" class="anchored" data-anchor-id="monte-carlo"><span class="header-section-number">0.1.4.2</span> Monte Carlo</h4>
+<section id="monte-carlo" class="level4">
+<h4 class="anchored" data-anchor-id="monte-carlo">Monte Carlo</h4>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -414,8 +531,8 @@ tr:nth-child(odd) td {
 <p><strong>Descripción del Modelo Monte Carlo:</strong></p>
 <p>La simulación Monte Carlo utiliza muestreo aleatorio repetido para modelar el comportamiento de sistemas complejos. En el contexto financiero, este método genera múltiples escenarios posibles para predecir los movimientos futuros del precio, proporcionando una estimación probabilística.</p>
 </section>
-<section id="regresión" class="level4" data-number="0.1.4.3">
-<h4 data-number="0.1.4.3" class="anchored" data-anchor-id="regresión"><span class="header-section-number">0.1.4.3</span> Regresión</h4>
+<section id="regresión" class="level4">
+<h4 class="anchored" data-anchor-id="regresión">Regresión</h4>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -428,8 +545,8 @@ tr:nth-child(odd) td {
 <p><strong>Descripción del Modelo de Regresión:</strong></p>
 <p>El modelo de regresión establece una relación matemática entre las variables independientes (como indicadores técnicos, volumen, etc.) y la variable dependiente (precio de la acción). Este enfoque permite identificar patrones lineales o no lineales en los datos históricos.</p>
 </section>
-<section id="sma" class="level4" data-number="0.1.4.4">
-<h4 data-number="0.1.4.4" class="anchored" data-anchor-id="sma"><span class="header-section-number">0.1.4.4</span> SMA</h4>
+<section id="sma" class="level4">
+<h4 class="anchored" data-anchor-id="sma">SMA</h4>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -445,8 +562,8 @@ tr:nth-child(odd) td {
 </section>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<section id="comparación-de-rendimiento-por-modelo" class="level3" data-number="0.1.5">
-<h3 data-number="0.1.5" class="anchored" data-anchor-id="comparación-de-rendimiento-por-modelo"><span class="header-section-number">0.1.5</span> Comparación de Rendimiento por Modelo</h3>
+<section id="comparación-de-rendimiento-por-modelo" class="level3">
+<h3 class="anchored" data-anchor-id="comparación-de-rendimiento-por-modelo">Comparación de Rendimiento por Modelo</h3>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -532,8 +649,8 @@ Archivo no encontrado: output/tables/NKE/model_SMA_metrics.csv </code></pre>
 </div>
 </div>
 </section>
-<section id="interpretación-de-métricas" class="level3" data-number="0.1.6">
-<h3 data-number="0.1.6" class="anchored" data-anchor-id="interpretación-de-métricas"><span class="header-section-number">0.1.6</span> Interpretación de Métricas</h3>
+<section id="interpretación-de-métricas" class="level3">
+<h3 class="anchored" data-anchor-id="interpretación-de-métricas">Interpretación de Métricas</h3>
 <ul>
 <li><p><strong>MAE (Error Absoluto Medio):</strong> Mide la diferencia promedio entre valores predichos y reales. Valores menores indican mejor precisión.</p></li>
 <li><p><strong>RMSE (Raíz del Error Cuadrático Medio):</strong> Penaliza más los errores grandes que el MAE. Útil cuando los errores grandes son especialmente indeseables.</p></li>
@@ -545,10 +662,10 @@ Archivo no encontrado: output/tables/NKE/model_SMA_metrics.csv </code></pre>
 </div>
 </div>
 </section>
-<section id="gestión-de-riesgos" class="level2" data-number="0.2">
-<h2 data-number="0.2" class="anchored" data-anchor-id="gestión-de-riesgos"><span class="header-section-number">0.2</span> Gestión de Riesgos</h2>
-<section id="métricas-de-riesgo-por-frecuencia" class="level3" data-number="0.2.1">
-<h3 data-number="0.2.1" class="anchored" data-anchor-id="métricas-de-riesgo-por-frecuencia"><span class="header-section-number">0.2.1</span> Métricas de Riesgo por Frecuencia</h3>
+<section id="gestión-de-riesgos" class="level2">
+<h2 class="anchored" data-anchor-id="gestión-de-riesgos">Gestión de Riesgos</h2>
+<section id="métricas-de-riesgo-por-frecuencia" class="level3">
+<h3 class="anchored" data-anchor-id="métricas-de-riesgo-por-frecuencia">Métricas de Riesgo por Frecuencia</h3>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
@@ -610,8 +727,8 @@ Archivo no encontrado: output/tables/NKE/model_SMA_metrics.csv </code></pre>
 </div>
 </div>
 </section>
-<section id="interpretación-de-métricas-de-riesgo" class="level3" data-number="0.2.2">
-<h3 data-number="0.2.2" class="anchored" data-anchor-id="interpretación-de-métricas-de-riesgo"><span class="header-section-number">0.2.2</span> Interpretación de Métricas de Riesgo</h3>
+<section id="interpretación-de-métricas-de-riesgo" class="level3">
+<h3 class="anchored" data-anchor-id="interpretación-de-métricas-de-riesgo">Interpretación de Métricas de Riesgo</h3>
 <ul>
 <li><strong>Volatilidad:</strong> Medida de dispersión de los retornos. Mayor volatilidad indica mayor riesgo.</li>
 <li><strong>VaR (Value at Risk):</strong> Pérdida máxima esperada con un nivel de confianza determinado.</li>
@@ -624,7 +741,6 @@ Archivo no encontrado: output/tables/NKE/model_SMA_metrics.csv </code></pre>
 
 <!-- -->
 
-</section>
 </section>
 </section>
 
@@ -1078,7 +1194,19 @@ Archivo no encontrado: output/tables/NKE/model_SMA_metrics.csv </code></pre>
       }
     }
   });
-  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./K.html" class="pagination-link" aria-label="K">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">K</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./PEP.html" class="pagination-link" aria-label="PEP">
+        <span class="nav-page-text">PEP</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># NKE {.unnumbered}</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
