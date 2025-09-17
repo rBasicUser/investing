@@ -11,23 +11,19 @@ stocks <- params$stocks
 
 # Carga de datos
 for (s in stocks) {
-  train_data <- read_csv(glue("data/processed/{s}_full.csv")) |>
-    arrange(date)
+  train_data <- readRDS(glue("data/processed/returns/{s}_returns.RDS"))
 
-  # Extraer la columna de precios y ordenarlos del más antiguo al más reciente
-  precios <- train_data$close
+  trains_data <-  data.frame(date=index(train_data),coredata(train_data))
+    as_tibble()|>
+    select(date,daily.returns)
 
-  # Calcular retornos logarítmicos
-  retornos <- diff(log(precios))
-  media_ret <- mean(retornos, na.rm = TRUE)
-  sd_ret <- sd(retornos, na.rm = TRUE)
+  
 
   # Ajuste automático de ARIMA con auto.arima()
   fit <- auto.arima(
-    retornos,
-    seasonal = FALSE, # sin componente estacional
-    stepwise = TRUE, # búsqueda rápida
-    approximation = TRUE # aproximación para velocidad
+    train_data,
+    seasonal = TRUE, # sin componente estacional
+    stepwise = TRUE
   )
   summary(fit)
 
