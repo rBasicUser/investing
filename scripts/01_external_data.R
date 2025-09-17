@@ -2,13 +2,24 @@
 
 library(tidyverse)
 library(quantmod)
+library(yaml)
 
-source("R/xts to df.R")
+params <- read_yaml("params.yaml")
+external_data <- params$external_data
 
-# Obtener último año de data del M2
 
-getSymbols("WM2NS",src="FRED",periodicity="monthly")
+# Datos de la FRED
 
-WM2NS <-xts_to_dataframe(WM2NS)
-
-write_csv(WM2NS,"data/external/WM2NS.csv")
+for (e in external_data) {
+  variable <- getSymbols(
+    e,
+    src = "FRED",
+    periodicity = "monthly",
+    auto.assign = FALSE
+  )
+  variable <- as_tibble(data.frame(
+    date = index(external_data),
+    coredata(external_data)
+  ))
+  saveRDS(stock_data, glue("data/external/{s}_full.rds"))
+}
