@@ -15,32 +15,24 @@ for (s in stocks) {
   prices <- Ad(prices)
 
   # Retornos diarios con quantmod
-  returns <- dailyReturn(prices, type = "arithmetic")
-  returns_log <- dailyReturn(prices, type = "log")
+  daily_returns <- dailyReturn(prices, type = "arithmetic")
+  daily_returns_log <- dailyReturn(prices, type = "log")
 
-  weekly_returns <- ROC(prices, n = 5, type = "discrete")
-  weekly_returns_log <- ROC(prices, n = 5, type = "continuous")
+  weekly_returns <- weeklyReturn(prices, n = 5, type = "arithmetic")
+  weekly_returns_log <- weeklyReturn(prices, n = 5, type = "log")
 
-  monthly_returns <- ROC(prices, n = 30, type = "discrete")
-  monthly_returns_log <- ROC(prices, n = 30, type = "continuous")
+  monthly_returns <- monthlyReturn(prices, n = 30, type = "arithmetic")
+  monthly_returns_log <- monthlyReturn(prices, n = 30, type = "log")
 
-  yearly_returns <- ROC(prices, n = 365, type = "discrete")
-  yearly_returns_log <- ROC(prices, n = 365, type = "continuous")
+  yearly_returns <- yearlyReturn(prices, n = 365, type = "arithmetic")
+  yearly_returns_log <- yearlyReturn(prices, n = 365, type = "log")
 
-  # Asignar nombres descriptivos a las columnas ANTES del merge
-  colnames(returns) <- paste0(s, "_daily_return")
-  colnames(returns_log) <- paste0(s, "_daily_return_log")
-  colnames(weekly_returns) <- paste0(s, "_weekly_return")
-  colnames(weekly_returns_log) <- paste0(s, "_weekly_return_log")
-  colnames(monthly_returns) <- paste0(s, "_monthly_return")
-  colnames(monthly_returns_log) <- paste0(s, "_monthly_return_log")
-  colnames(yearly_returns) <- paste0(s, "_yearly_return")
-  colnames(yearly_returns_log) <- paste0(s, "_yearly_return_log")
 
   # Combinar todo
   processed_data <- merge(
     prices,
-    returns,
+    daily_returns,
+    daily_returns_log,
     weekly_returns,
     weekly_returns_log,
     monthly_returns,

@@ -13,9 +13,11 @@ stocks <- params$stocks
 # Cargar datos macro (M2) con validación
 M2 <- read_csv("data/external/WM2NS.csv")
 
+# Explorar la correlación entre el Crecimiento Interanual del M"
+
 for (s in stocks) {
   # Cargar datos históricos de cada acción
-  train_data <- read_csv(glue("data/processed/{s}_full.csv"))
+  train_data <- readRDS(glue("data/processed/returns/{s}_full.rds"))
   
   # Limpiar y preparar datos
   train_data_clean <- train_data |>
