@@ -21,5 +21,5 @@ for (e in external_data) {
     date = index(external_data),
     coredata(external_data)
   ))
-  saveRDS(stock_data, glue("data/external/{s}_full.rds"))
+  saveRDS(external_data, glue("data/external/{s}_full.rds"))
 }
