@@ -1,3 +1,12 @@
 stocks: [ "F", "GM", "TSLA", "NKE", "SBUX", "HD", "CCL", "MAR", "DAL", "RCL", "CAT", "DE", "BA", "RTX", "MLM", "VMC", "XOM", "CVX", "COP", "SLB", "HAL", "FCX", "NUE", "MT", "DOW", "LYB", "JPM", "BAC", "C", "AIG", "MET" ]
 external_data: [ "WM2NS" ]
 days_simulated: 10
+
+CONFIG:
+  initial_capital: 100000
+  position_size: 5000
+  transaction_cost: 0.001       # 0.1% por operación
+  signal_threshold: 0.05        # 5% para generar señal
+  start_date: "2020-01-01"
+  end_date: "2024-12-31"
+  rebalance_frequency: "monthly"  # opciones: weekly, monthly, quarterly

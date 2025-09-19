@@ -18,7 +18,7 @@ for (s in stocks) {
   # Cargar y limpiar datos
   train_data <- readRDS(glue("data/processed/returns/{s}_returns.RDS")) %>%
     clean_names()|>
-    tail(252*4)
+    quantmod::last('5 years')
 
   # Seleccionar la columna de retornos logarítmicos
   train_data_sub <- train_data %>%
@@ -35,7 +35,9 @@ for (s in stocks) {
     stepwise = TRUE
   )
 
-  saveRDS(fit, glue("models/arima/artifacts/arima_{s}_T{Sys.Date()}.rds"))
+  date <- get_last_business_day()
+
+  saveRDS(fit, glue("models/arima/artifacts/arima_{s}_T{date}.rds"))
 
   cat("Resumen del modelo ARIMA para", s, ":\n")
   print(summary(fit))

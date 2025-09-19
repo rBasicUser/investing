@@ -1,53 +1,64 @@
-library(quantmod)
-library(janitor)
-library(glue)
-library(tidyverse)
+# ================================
+# 0. Librerías
+# ================================
 library(yaml)
+library(glue)
+library(quantmod)
+library(tidyverse)
+library(janitor)
 
+# ================================
+# 1. Configuración Inicial
+# ================================
 params <- read_yaml("params.yaml")
 stocks <- params$stocks
 
-# Función para procesar un stock individual
+# ================================
+# 2. Bucle de Procesamiento
+# ================================
 for (s in stocks) {
-  prices <- readRDS(glue("data/raw/{s}_full.rds"))
-
-  # Precio ajustado
-  prices <- Ad(prices)
-
-  # Retornos diarios con quantmod
-  returns <- dailyReturn(prices, type = "arithmetic")
-  returns_log <- dailyReturn(prices, type = "log")
-
-  weekly_returns <- weeklyReturn(prices,type = "arithmetic")
-  weekly_returns_log <- weeklyReturn(prices,type = "log")
-
-  monthly_returns <- monthlyReturn(prices,type = "arithmetic")
-  monthly_returns_log <- monthlyReturn(prices,type = "log")
+  # 2.1 Leer datos crudos
+  prices_raw <- readRDS(glue("data/raw/{s}_full.rds"))
   
-  yearly_returns <- yearlyReturn(prices,type = "arithmetic")
-  yearly_returns_log <- yearlyReturn(prices,type = "log")
+  # 2.2 Extraer precio ajustado
+  prices <- Ad(prices_raw)
   
-
-  # Combinar todo
-  processed_data <- merge(
+  # 2.3 Calcular retornos
+  returns_daily       <- dailyReturn(prices, type = "arithmetic")
+  returns_daily_log   <- dailyReturn(prices, type = "log")
+  returns_weekly      <- weeklyReturn(prices, type = "arithmetic")
+  returns_weekly_log  <- weeklyReturn(prices, type = "log")
+  returns_monthly     <- monthlyReturn(prices, type = "arithmetic")
+  returns_monthly_log <- monthlyReturn(prices, type = "log")
+  returns_yearly      <- yearlyReturn(prices, type = "arithmetic")
+  returns_yearly_log  <- yearlyReturn(prices, type = "log")
+  
+  # 2.4 Combinar todos los xts en uno solo
+  combined_xts <- merge(
     prices,
-    returns,
-    weekly_returns,
-    weekly_returns_log,
-    monthly_returns,
-    monthly_returns_log,
-    yearly_returns,
-    yearly_returns_log
+    returns_daily,
+    returns_daily_log,
+    returns_weekly,
+    returns_weekly_log,
+    returns_monthly,
+    returns_monthly_log,
+    returns_yearly,
+    returns_yearly_log
   )
-
-  # Convertir a tibble y guardar
+  
+  # 2.5 Convertir a tibble y renombrar columnas con glue()
   processed_tibble <- as_tibble(
     data.frame(
-      date = index(processed_data),
-      coredata(processed_data),
-      check.names = FALSE
+      date = index(combined_xts),
+      coredata(combined_xts)
     )
+  ) |>
+    rename_with(~ glue("{s}_{.x}"), -date)|>
+    clean_names()
+  
+  # 2.6 Guardar resultado
+  saveRDS(
+    processed_tibble,
+    glue("data/processed/returns/{s}_returns.rds")
   )
-
-  saveRDS(processed_tibble, glue("data/processed/returns/{s}_returns.rds"))
 }

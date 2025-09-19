@@ -1,81 +1,64 @@
-# ================================
-# SCRIPT PRINCIPAL - SISTEMA DE TRADING
-# ================================
-
 library(tidyverse)
 library(lubridate)
+library(yaml)
+library(glue)
+library(timeDate)
 
 # Cargar funciones
-source("R/engine_backtest.R")  # Tu motor actual + el nuevo código
-
-# ================================
+source("R/engine_backtest.R") # Tu motor actual + el nuevo código
+source("R/last_date.R")
 # 1. CONFIGURACIÓN INICIAL
-# ================================
 
-# Parámetros del sistema
-CONFIG <- list(
-  initial_capital = 100000,
-  position_size = 5000,
-  transaction_cost = 0.001,  # 0.1% por operación
-  signal_threshold = 0.02,   # 2% para generar señal
-  start_date = "2020-01-01",
-  end_date = "2024-12-31",
-  rebalance_frequency = "monthly"  # weekly, monthly, quarterly
-)
+params <- read_yaml("params.yaml")
 
-# Stocks a analizar (basado en tu estructura)
-SYMBOLS <- read_yaml("params.yaml")$stocks
+CONFIG <- params$CONFIG
+symbols <- params$stocks
 
 # ================================
 # 2. CARGA Y PREPARACIÓN DE DATOS
 # ================================
 
-load_stock_data <- function(symbols, data_path = "data/processed/returns/") {
-  all_data <- list()
-  
-  for (symbol in symbols) {
-    file_path <- paste0(data_path, symbol, "_returns.rds")
-    
-    if (file.exists(file_path)) {
-      stock_data <- readRDS(file_path)
-      stock_data$symbol <- symbol
-      all_data[[symbol]] <- stock_data
-    } else {
-      warning(paste("Archivo no encontrado para", symbol))
-    }
-  }
-  
-  # Combinar todos los datos
-  combined_data <- bind_rows(all_data)
-  return(combined_data)
+all_data <- list()
+
+for (s in symbols) {
+  stock_data <- readRDS(glue("data/processed/returns/{s}_returns.rds"))
+  all_data[[s]] <- stock_data
 }
+
+# Combinar todos los datos
+combined_data <- all_data |>
+  reduce(full_join, by = "date")
 
 load_predictions <- function(symbols, model_type = "ARIMA") {
   predictions_list <- list()
-  
-  for (symbol in symbols) {
-    # Cargar predicciones del modelo especificado
-    model_path <- paste0("models/", model_type, "/model_", model_type, "_", symbol, ".rds")
-    
-    if (file.exists(model_path)) {
-      model <- readRDS(model_path)
-      
-      # Generar predicciones (esto depende de cómo tengas estructurados tus modelos)
-      # Ejemplo genérico - tendrás que adaptarlo a tu estructura
-      predictions <- generate_model_predictions(model, symbol)
-      predictions$symbol <- symbol
-      predictions_list[[symbol]] <- predictions
+
+  nyse_holidays <- holidayNYSE(2000:2030)
+
+  for (s in symbols) {
+    date <- Sys.Date()
+    while (as.numeric(format(date, "%u")) > 5 || date %in% nyse_holidays) {
+      date <- date - 1
     }
+
+    # Cargar predicciones del modelo especificado
+    model_path <- glue(
+      "models/",
+      model_type,
+      "/forecasting/forecasting_{model_type}_{s}_{date}.rds"
+    )
   }
-  
+
   return(bind_rows(predictions_list))
 }
 
 # Función para generar señales de trading
-generate_trading_signals <- function(predictions, price_data, threshold = 0.02) {
-  
-  signals <- predictions %>% 
-    left_join(price_data, by = c("symbol", "date")) %>% 
+generate_trading_signals <- function(
+  predictions,
+  price_data,
+  threshold = 0.02
+) {
+  signals <- predictions %>%
+    left_join(price_data, by = c("s", "date")) %>%
     mutate(
       expected_return = (predicted_price - current_price) / current_price,
       signal = case_when(
@@ -84,10 +67,10 @@ generate_trading_signals <- function(predictions, price_data, threshold = 0.02) 
         TRUE ~ "HOLD"
       ),
       confidence = abs(expected_return)
-    ) %>% 
-    filter(signal != "HOLD") %>% 
-    arrange(desc(confidence))  # Priorizar señales con mayor confianza
-  
+    ) %>%
+    filter(signal != "HOLD") %>%
+    arrange(desc(confidence)) # Priorizar señales con mayor confianza
+
   return(signals)
 }
 
@@ -96,76 +79,82 @@ generate_trading_signals <- function(predictions, price_data, threshold = 0.02) 
 # ================================
 
 run_all_backtests <- function() {
-  
   cat("Iniciando sistema de backtesting...\n")
-  
+
   # 1. Cargar datos
   cat("Cargando datos históricos...\n")
   price_data <- load_stock_data(SYMBOLS)
-  
+
   # 2. Resultados para cada estrategia
   results <- list()
-  
+
   # ESTRATEGIA 1: ARIMA
   cat("Ejecutando backtest ARIMA...\n")
   arima_predictions <- load_predictions(SYMBOLS, "ARIMA")
-  arima_signals <- generate_trading_signals(arima_predictions, price_data, CONFIG$signal_threshold)
-  
+  arima_signals <- generate_trading_signals(
+    arima_predictions,
+    price_data,
+    CONFIG$signal_threshold
+  )
+
   results$arima <- run_backtest(
-    arima_signals, 
-    CONFIG$initial_capital, 
+    arima_signals,
+    CONFIG$initial_capital,
     CONFIG$position_size,
     CONFIG$transaction_cost,
     CONFIG$start_date,
     CONFIG$end_date
   )
-  
+
   # ESTRATEGIA 2: SMA
   cat("Ejecutando backtest SMA...\n")
   sma_signals <- generate_sma_signals(price_data, CONFIG$signal_threshold)
-  
+
   results$sma <- run_backtest(
-    sma_signals, 
-    CONFIG$initial_capital, 
+    sma_signals,
+    CONFIG$initial_capital,
     CONFIG$position_size,
     CONFIG$transaction_cost,
     CONFIG$start_date,
     CONFIG$end_date
   )
-  
+
   # ESTRATEGIA 3: REGRESIÓN
   cat("Ejecutando backtest Regresión...\n")
   regression_predictions <- load_predictions(SYMBOLS, "Regression")
-  regression_signals <- generate_trading_signals(regression_predictions, price_data, CONFIG$signal_threshold)
-  
+  regression_signals <- generate_trading_signals(
+    regression_predictions,
+    price_data,
+    CONFIG$signal_threshold
+  )
+
   results$regression <- run_backtest(
-    regression_signals, 
-    CONFIG$initial_capital, 
+    regression_signals,
+    CONFIG$initial_capital,
     CONFIG$position_size,
     CONFIG$transaction_cost,
     CONFIG$start_date,
     CONFIG$end_date
   )
-  
+
   # BUY & HOLD (Benchmark)
   cat("Ejecutando backtest Buy & Hold...\n")
   results$buy_hold <- run_buy_hold_backtest(
-    SYMBOLS, 
-    price_data, 
+    SYMBOLS,
+    price_data,
     CONFIG$initial_capital,
     CONFIG$start_date,
     CONFIG$end_date
   )
-  
+
   return(results)
 }
 
 # Función específica para señales SMA
 generate_sma_signals <- function(price_data, threshold = 0.02) {
-  
-  sma_signals <- price_data %>% 
-    group_by(symbol) %>% 
-    arrange(date) %>% 
+  sma_signals <- price_data %>%
+    group_by(s) %>%
+    arrange(date) %>%
     mutate(
       sma_20 = zoo::rollmean(close, k = 20, fill = NA, align = "right"),
       sma_50 = zoo::rollmean(close, k = 50, fill = NA, align = "right"),
@@ -174,11 +163,11 @@ generate_sma_signals <- function(price_data, threshold = 0.02) {
         sma_20 < sma_50 * (1 - threshold) ~ "SELL",
         TRUE ~ "HOLD"
       )
-    ) %>% 
-    filter(signal_raw != "HOLD", !is.na(sma_20), !is.na(sma_50)) %>% 
-    select(date, symbol, current_price = close, signal = signal_raw) %>% 
+    ) %>%
+    filter(signal_raw != "HOLD", !is.na(sma_20), !is.na(sma_50)) %>%
+    select(date, s, current_price = close, signal = signal_raw) %>%
     ungroup()
-  
+
   return(sma_signals)
 }
 
@@ -187,7 +176,6 @@ generate_sma_signals <- function(price_data, threshold = 0.02) {
 # ================================
 
 create_performance_dashboard <- function(results) {
-  
   # Tabla resumen de todas las estrategias
   summary_metrics <- data.frame(
     Strategy = c("ARIMA", "SMA", "Regression", "Buy & Hold"),
@@ -221,15 +209,15 @@ create_performance_dashboard <- function(results) {
       results$regression$metrics$final_value,
       results$buy_hold$metrics$final_value
     )
-  ) %>% 
-  mutate(
-    Total_Return = paste0(round(Total_Return * 100, 2), "%"),
-    Annualized_Return = paste0(round(Annualized_Return * 100, 2), "%"),
-    Sharpe_Ratio = round(Sharpe_Ratio, 3),
-    Max_Drawdown = paste0(round(Max_Drawdown * 100, 2), "%"),
-    Final_Value = paste0("$", format(round(Final_Value, 0), big.mark = ","))
-  )
-  
+  ) %>%
+    mutate(
+      Total_Return = glue(round(Total_Return * 100, 2), "%"),
+      Annualized_Return = glue(round(Annualized_Return * 100, 2), "%"),
+      Sharpe_Ratio = round(Sharpe_Ratio, 3),
+      Max_Drawdown = glue(round(Max_Drawdown * 100, 2), "%"),
+      Final_Value = glue("$", format(round(Final_Value, 0), big.mark = ","))
+    )
+
   return(summary_metrics)
 }
 
@@ -238,34 +226,41 @@ create_performance_dashboard <- function(results) {
 # ================================
 
 main <- function() {
-  
   cat("=================================\n")
-  cat("SISTEMA DE TRADING AUTOMATIZADO\n") 
+  cat("SISTEMA DE TRADING AUTOMATIZADO\n")
   cat("=================================\n\n")
-  
+
   # Ejecutar todos los backtests
   results <- run_all_backtests()
-  
+
   # Crear dashboard de performance
   dashboard <- create_performance_dashboard(results)
-  
+
   cat("\nRESUMEN DE RESULTADOS:\n")
   cat("======================\n")
   print(dashboard)
-  
+
   # Guardar resultados
   saveRDS(results, "output/backtest_results.rds")
   write.csv(dashboard, "output/performance_summary.csv", row.names = FALSE)
-  
+
   # Generar reportes individuales
   for (strategy in names(results)[names(results) != "buy_hold"]) {
-    report <- generate_backtest_report(results[[strategy]], results$buy_hold, toupper(strategy))
-    write.csv(report, paste0("output/report_", strategy, ".csv"), row.names = FALSE)
+    report <- generate_backtest_report(
+      results[[strategy]],
+      results$buy_hold,
+      toupper(strategy)
+    )
+    write.csv(
+      report,
+      glue("output/report_", strategy, ".csv"),
+      row.names = FALSE
+    )
   }
-  
+
   cat("\nResultados guardados en carpeta 'output/'\n")
   cat("Sistema completado exitosamente!\n")
-  
+
   return(results)
 }
 
