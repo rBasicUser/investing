@@ -18,24 +18,15 @@ for (s in stocks) {
   returns <- dailyReturn(prices, type = "arithmetic")
   returns_log <- dailyReturn(prices, type = "log")
 
-  weekly_returns <- ROC(prices, n = 5, type = "discrete")
-  weekly_returns_log <- ROC(prices, n = 5, type = "continuous")
+  weekly_returns <- weeklyReturn(prices,type = "arithmetic")
+  weekly_returns_log <- weeklyReturn(prices,type = "log")
 
-  monthly_returns <- ROC(prices, n = 30, type = "discrete")
-  monthly_returns_log <- ROC(prices, n = 30, type = "continuous")
-
-  yearly_returns <- ROC(prices, n = 365, type = "discrete")
-  yearly_returns_log <- ROC(prices, n = 365, type = "continuous")
-
-  # Asignar nombres descriptivos a las columnas ANTES del merge
-  colnames(returns) <- paste0(s, "_daily_return")
-  colnames(returns_log) <- paste0(s, "_daily_return_log")
-  colnames(weekly_returns) <- paste0(s, "_weekly_return")
-  colnames(weekly_returns_log) <- paste0(s, "_weekly_return_log")
-  colnames(monthly_returns) <- paste0(s, "_monthly_return")
-  colnames(monthly_returns_log) <- paste0(s, "_monthly_return_log")
-  colnames(yearly_returns) <- paste0(s, "_yearly_return")
-  colnames(yearly_returns_log) <- paste0(s, "_yearly_return_log")
+  monthly_returns <- monthlyReturn(prices,type = "arithmetic")
+  monthly_returns_log <- monthlyReturn(prices,type = "log")
+  
+  yearly_returns <- yearlyReturn(prices,type = "arithmetic")
+  yearly_returns_log <- yearlyReturn(prices,type = "log")
+  
 
   # Combinar todo
   processed_data <- merge(

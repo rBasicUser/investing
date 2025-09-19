@@ -1,2 +1,3 @@
 stocks: [ "F", "GM", "TSLA", "NKE", "SBUX", "HD", "CCL", "MAR", "DAL", "RCL", "CAT", "DE", "BA", "RTX", "MLM", "VMC", "XOM", "CVX", "COP", "SLB", "HAL", "FCX", "NUE", "MT", "DOW", "LYB", "JPM", "BAC", "C", "AIG", "MET" ]
 external_data: [ "WM2NS" ]
+days_simulated: 10

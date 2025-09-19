@@ -7,34 +7,36 @@ library(forecast)
 
 # Carga de parámetros
 params <- read_yaml("params.yaml")
-days_simulated <- 5
+days_simulated <- 10
 stocks <- params$stocks
 
 # Carga de datos
 for (s in stocks) {
-  
   # Definimos el prefijo por cada stock "s"
-  pref <- glue("{s}_daily_return")  # Usar retornos logarítmicos para ARIMA
+  pref <- glue("{s}daily_returns") # Usar retornos logarítmicos para ARIMA
 
   # Cargar y limpiar datos
   train_data <- readRDS(glue("data/processed/returns/{s}_returns.RDS")) %>%
-    clean_names()
+    clean_names()|>
+    tail(252*4)
 
   # Seleccionar la columna de retornos logarítmicos
-  train_data_sub <- train_data %>% 
-    select(starts_with(pref)) %>%
-    pull()  # Convertir a vector
-  
+  train_data_sub <- train_data %>%
+    select(daily_returns) %>%
+    pull() # Convertir a vector
+
   # Remover NAs
   train_data_sub <- train_data_sub[!is.na(train_data_sub)]
-  
+
   # Ajuste automático de ARIMA con auto.arima()
   fit <- auto.arima(
     train_data_sub,
-    seasonal = FALSE,  # Cambiado a FALSE - retornos diarios no suelen tener estacionalidad
+    seasonal = FALSE, # Cambiado a FALSE - retornos diarios no suelen tener estacionalidad
     stepwise = TRUE
   )
-  
+
+  saveRDS(fit, glue("models/arima/artifacts/arima_{s}_T{Sys.Date()}.rds"))
+
   cat("Resumen del modelo ARIMA para", s, ":\n")
   print(summary(fit))
 
@@ -54,11 +56,13 @@ for (s in stocks) {
 
   # Obtener precio inicial - usar la columna de precios
   precio_col <- glue("{tolower(s)}_adjusted")
-  precio_inicial <- train_data %>% 
-    select(all_of(precio_col)) %>% 
-    tail(1) %>% 
+  precio_col <- train_data|>
+    select(all_of(precio_col))|>
     pull()
-  
+
+  precio_inicial <- tail(precio_col,1)
+
+
   # Convertir retornos simulados a precios
   sim_precios <- matrix(NA, nrow = days_simulated, ncol = n_sim)
 
@@ -86,19 +90,16 @@ for (s in stocks) {
   output_model2 <- data.frame(
     date = fechas,
     pred = rowMeans(sim_precios),
-    pred_lower = apply(sim_precios, 1, quantile, 0.025),
-    pred_upper = apply(sim_precios, 1, quantile, 0.975)
+    pred_lower = apply(sim_precios, 1, quantile, 0.20),
+    pred_upper = apply(sim_precios, 1, quantile, 0.80)
   )
-  
-  # Crear directorio si no existe
-  dir.create(glue("output/plots/{s}"), recursive = TRUE, showWarnings = FALSE)
-  
+
   # Generar gráficos
   png(glue("output/plots/{s}/ARIMA_{s}.png"), width = 800, height = 800)
   par(mfrow = c(2, 2), mar = c(4, 4, 3, 2))
 
   # 1. Histograma de retornos logarítmicos históricos
-  retornos <- train_data_sub  # Variable definida correctamente
+  retornos <- train_data_sub # Variable definida correctamente
   hist(
     retornos,
     main = glue("Distribución Retornos Históricos - {s}"),
@@ -112,42 +113,33 @@ for (s in stocks) {
   abline(v = median(retornos, na.rm = TRUE), col = "blue", lty = 2)
   legend("topright", c("Media", "Mediana"), col = c("red", "blue"), lty = 2)
 
-  # 2. Caminos Monte Carlo (200 muestra)
-  sample_idx <- sample(n_sim, 200)
+  # 1. Calcula la ACF sin dibujarla
+  acf_obj <- acf(retornos,plot = FALSE, na.action = na.pass)
+
+  # 2. Elimina la componente de lag 0
+  acf_obj$lag <- acf_obj$lag[-1,,,drop=FALSE]
+  acf_obj$acf <- acf_obj$acf[-1,,,drop=FALSE]
+
+  # 3. Grafica el resultado ajustado
   plot(
-    1:days_simulated,
-    sim_precios[, sample_idx[1]],
-    type = "n",
-    main = glue("MC Simulaciones - {s}"),
-    xlab = "Días",
-    ylab = "Precio ($)",
-    ylim = range(sim_precios, na.rm = TRUE)
-  )
-  for (j in sample_idx) {
-    lines(sim_precios[, j], col = rgb(0.5, 0.5, 0.5, 0.3))  # Cambié alpha() por rgb()
-  }
-  pct <- apply(sim_precios, 1, quantile, probs = c(0.05, 0.25, 0.75, 0.95))
-  mu_sim <- rowMeans(sim_precios)
-  lines(pct[1, ], lty = 3)
-  lines(pct[2, ], lty = 2)
-  lines(mu_sim, lwd = 2)
-  lines(pct[3, ], lty = 2)
-  lines(pct[4, ], lty = 3)
-  legend(
-    "topleft",
-    c("Caminos", "Media", "Q25-Q75", "Q5-Q95"),
-    lty = c(1, 1, 2, 3),
-    lwd = c(1, 2, 1, 1)
+    acf_obj,
+    main = glue("Función ACF)"),
+    xlab = "Lag",
+    ylab = "Autocorrelación",
+    col = "darkblue",
+    lwd = 2
   )
 
   # 3. Histórico vs pronóstico
+
   fechas_hist <- as.Date(train_data$date)
-  precios_hist <- train_data %>% select(all_of(precio_col)) %>% pull()
   start_pred <- max(fechas_hist) + 1
   fechas_pred <- seq(start_pred, by = "day", length.out = days_simulated)
   combined_dates <- c(tail(fechas_hist, 30), fechas_pred)
-  combined_vals <- c(tail(precios_hist, 30), rep(NA, days_simulated))
-  
+  combined_vals <- c(tail(precio_col, 30), rep(NA, days_simulated))
+  pct <- apply(sim_precios, 1, quantile, probs = c(0.20, 0.80))
+  mu_sim <- rowMeans(sim_precios)
+
   plot(
     combined_dates,
     combined_vals,
@@ -158,18 +150,19 @@ for (s in stocks) {
     ylim = range(c(combined_vals, sim_precios), na.rm = TRUE)
   )
   abline(v = start_pred, col = "red", lty = 2)
+  abline(h=100,col="black",lty=2)
   polygon(
     c(fechas_pred, rev(fechas_pred)),
-    c(pct[1, ], rev(pct[4, ])),
-    col = rgb(0.7, 0.9, 1, 0.3),  # Cambié alpha() por rgb()
+    c(pct[1, ], rev(pct[2, ])),
+    col = rgb(0.9, 0.4, 1, 0.5), # Cambié alpha() por rgb()
     border = NA
   )
-  lines(fechas_pred, mu_sim, lwd = 2)
+  lines(fechas_pred, mu_sim, lwd = 2,color="lightblue")
 
-  # 4. Función ACF de los retornos logarítmicos
-  acf(
+  # 4. Función Autocorrelación Parcial de los retornos logarítmicos
+  pacf(
     retornos,
-    main = glue("Función ACF - Retornos {s}"),
+    main = glue("Función PACF - Retornos {s}"),
     xlab = "Lag",
     ylab = "Autocorrelación",
     col = "darkblue",
@@ -179,11 +172,8 @@ for (s in stocks) {
 
   dev.off()
 
-  # Crear directorio para modelos si no existe
-  dir.create("models/ARIMA", recursive = TRUE, showWarnings = FALSE)
-  
   # Guardar resultados
-  saveRDS(output_model2, glue("models/ARIMA/model_ARIMA_{s}.rds"))
+  saveRDS(output_model2, glue("models/arima/forecasting/forecasting_ARIMA_{s}_{Sys.Date()}.rds"))
 
   # Mostrar resumen de los resultados
   cat("\nPrimeras predicciones para", s, ":\n")
