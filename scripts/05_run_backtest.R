@@ -35,10 +35,8 @@ load_predictions <- function(symbols, model_type = "ARIMA") {
   nyse_holidays <- holidayNYSE(2000:2030)
 
   for (s in symbols) {
-    date <- Sys.Date()
-    while (as.numeric(format(date, "%u")) > 5 || date %in% nyse_holidays) {
-      date <- date - 1
-    }
+    
+    date <- get_last_business_day()
 
     # Cargar predicciones del modelo especificado
     model_path <- glue(
@@ -51,28 +49,7 @@ load_predictions <- function(symbols, model_type = "ARIMA") {
   return(bind_rows(predictions_list))
 }
 
-# Función para generar señales de trading
-generate_trading_signals <- function(
-  predictions,
-  price_data,
-  threshold = 0.02
-) {
-  signals <- predictions %>%
-    left_join(price_data, by = c("s", "date")) %>%
-    mutate(
-      expected_return = (predicted_price - current_price) / current_price,
-      signal = case_when(
-        expected_return > threshold ~ "BUY",
-        expected_return < -threshold ~ "SELL",
-        TRUE ~ "HOLD"
-      ),
-      confidence = abs(expected_return)
-    ) %>%
-    filter(signal != "HOLD") %>%
-    arrange(desc(confidence)) # Priorizar señales con mayor confianza
-
-  return(signals)
-}
+generate_trading_signals()
 
 # ================================
 # 3. EJECUCIÓN DE BACKTESTS
