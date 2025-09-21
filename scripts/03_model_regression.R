@@ -1,4 +1,4 @@
-# FORECASTING SIMPLIFICADO - CORREGIDO (base R + residuos lado a lado)
+# FORECASTING SIMPLIFICADO
 
 library(tidyverse)
 library(yaml)
@@ -11,7 +11,7 @@ params <- read_yaml("params.yaml")
 stocks <- params$stocks
 
 # Cargar datos macro (M2) con validación
-M2 <- read_csv("data/external/WM2NS.csv")
+M2 <- read_csv("data/external/M2.rds")
 
 # Explorar la correlación entre el Crecimiento Interanual del M"
 

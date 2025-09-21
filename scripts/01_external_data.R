@@ -17,9 +17,9 @@ for (e in external_data) {
     periodicity = "monthly",
     auto.assign = FALSE
   )
-  variable <- as_tibble(data.frame(
+  variable <- data.frame(
     date = index(external_data),
     coredata(external_data)
-  ))
-  saveRDS(external_data, glue("data/external/{s}_full.rds"))
+  )
+  saveRDS(external_data, glue("data/external/{e}_full.rds"))
 }
